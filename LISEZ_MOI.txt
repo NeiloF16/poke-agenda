@@ -1,0 +1,29 @@
+POKÉ-AGENDA — SITE OFFLINE (V1)
+==================================
+
+1. Sur Windows, fais un clic droit sur le ZIP et choisis « Extraire tout ».
+2. Ouvre le dossier extrait « Poke_Agenda_Site_Offline ».
+3. Double-clique sur index.html : le site s’ouvre dans ton navigateur.
+4. Aucune installation ni connexion Internet nécessaire.
+
+Le site contient les 23 jeux/duos et les 90 pages PNG des 8 lots V2.
+Les affiches s’affichent sur le site mais restent aussi disponibles séparément dans assets/pages/.
+
+FONCTIONS
+- Recherche des jeux et filtres par génération ;
+- Calendrier avec quelques événements forts par jour de semaine ;
+- Lecteur d’images, pagination, agrandissement, sauvegarde PNG ;
+- Favoris, coche « fait aujourd’hui », notes personnelles ;
+- Export/import de tes données au format JSON (dans le menu latéral).
+
+À SAVOIR
+- Le petit calendrier du site est une SÉLECTION des événements ; pour la liste
+  complète, ouvre les pages illustrées de chaque jeu.
+- Les coches sont associées à la date locale du PC et se réinitialisent visuellement
+  à chaque nouvelle journée. L’historique reste dans le navigateur.
+- Les favoris, notes et coches sont conservés localement par le navigateur ;
+  exporte-les régulièrement pour ne rien perdre.
+- Si tu déplaces les fichiers, conserve la structure complète du dossier.
+- Si tu veux publier sur GitHub Pages, dépose le contenu du dossier tel quel.
+
+Site personnel inspiré de la collection des fiches Poké-Agenda V2.
