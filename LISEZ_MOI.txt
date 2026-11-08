@@ -1,29 +1,38 @@
-POKÉ-AGENDA — SITE OFFLINE (V1)
-==================================
+POKÉ-AGENDA — GUIDE PUBLIC DES ÉVÉNEMENTS POKÉMON
+=================================================
 
-1. Sur Windows, fais un clic droit sur le ZIP et choisis « Extraire tout ».
-2. Ouvre le dossier extrait « Poke_Agenda_Site_Offline ».
-3. Double-clique sur index.html : le site s’ouvre dans ton navigateur.
-4. Aucune installation ni connexion Internet nécessaire.
+Poké-Agenda est un projet de fans non officiel qui regroupe des guides illustrés
+des événements quotidiens, hebdomadaires et renouvelables des jeux Pokémon.
 
-Le site contient les 23 jeux/duos et les 90 pages PNG des 8 lots V2.
-Les affiches s’affichent sur le site mais restent aussi disponibles séparément dans assets/pages/.
+Consulter le site : https://neilof16.github.io/poke-agenda/
+Dépôt GitHub : https://github.com/NeiloF16/poke-agenda
+Signaler un problème ou proposer une amélioration :
+https://github.com/NeiloF16/poke-agenda/issues
 
-FONCTIONS
-- Recherche des jeux et filtres par génération ;
-- Calendrier avec quelques événements forts par jour de semaine ;
-- Lecteur d’images, pagination, agrandissement, sauvegarde PNG ;
-- Favoris, coche « fait aujourd’hui », notes personnelles ;
-- Export/import de tes données au format JSON (dans le menu latéral).
+CONTENU
+- 23 jeux ou duos de jeux de la série principale, plus Pokémon GO ;
+- 90 affiches illustrées, réparties entre huit lots ;
+- Calendrier des rendez-vous majeurs, recherche et filtres par génération ;
+- Lecteur des affiches avec zoom et téléchargement.
 
-À SAVOIR
-- Le petit calendrier du site est une SÉLECTION des événements ; pour la liste
-  complète, ouvre les pages illustrées de chaque jeu.
-- Les coches sont associées à la date locale du PC et se réinitialisent visuellement
-  à chaque nouvelle journée. L’historique reste dans le navigateur.
-- Les favoris, notes et coches sont conservés localement par le navigateur ;
-  exporte-les régulièrement pour ne rien perdre.
-- Si tu déplaces les fichiers, conserve la structure complète du dossier.
-- Si tu veux publier sur GitHub Pages, dépose le contenu du dossier tel quel.
+POUR CHAQUE VISITEUR
+- Favoris, jeux « faits aujourd'hui » et notes personnels ;
+- Exportation et importation de sauvegardes JSON ;
+- Données conservées dans le navigateur de chaque visiteur :
+  pas de compte ni de synchronisation entre plusieurs appareils.
 
-Site personnel inspiré de la collection des fiches Poké-Agenda V2.
+PRÉCISIONS
+- Le calendrier de la page d'accueil montre une sélection, pas l'intégralité
+  des événements : les détails sont dans les affiches.
+- Les événements peuvent nécessiter une progression précise, un DLC ou
+  des services réseau. Vérifiez les prérequis indiqués.
+- Les fiches sont des guides communautaires et peuvent contenir des erreurs.
+  Les corrections et suggestions sont bienvenues dans les Issues GitHub.
+- Le site est statique et publié par GitHub Pages. Les ressources du site
+  sont servies en ligne ; les données des favoris/notes/coches sont conservées
+  localement par le navigateur.
+
+MENTION NON OFFICIELLE
+Poké-Agenda est un projet de fans non affilié à Nintendo, Game Freak,
+The Pokémon Company ou leurs partenaires. Pokémon et les noms associés
+appartiennent à leurs ayants droit.
