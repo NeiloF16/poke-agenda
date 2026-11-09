@@ -117,12 +117,116 @@ begin
     or length(trim(coalesce(p_username,''))) not between 1 and 80 then
     raise exception 'Pseudo Discord invalide';
   end if;
+  -- Les images de profil doivent correspondre à l'ID Discord vérifié,
+  -- et non à l'ID d'un autre utilisateur.
   if p_avatar_url is not null and p_avatar_url !~
-     '^https://cdn\.discordapp\.com/(avatars/[0-9]{16,22}/[A-Za-z0-9_]+|embed/avatars/[0-9]+)\.(png|webp|gif)$' then
+     ('^https://cdn\.discordapp\.com/(avatars/' || verified_discord_id ||
+      '/[A-Za-z0-9_]+|embed/avatars/[0-9]+)\.(png|webp|gif)
+  if p_accent_color is not null and p_accent_color !~ '^#[0-9A-Fa-f]{6}$' then
+    raise exception 'Couleur Discord invalide';
+  end if;
+
+  insert into public.poke_discord_profiles
+    (user_id, discord_id, display_name, username, avatar_url, banner_url, accent_color)
+  values (owner_uuid, verified_discord_id, trim(p_display_name), trim(p_username),
+          p_avatar_url, p_banner_url, p_accent_color)
+  on conflict (user_id) do update
+  set discord_id = excluded.discord_id,
+      display_name = excluded.display_name,
+      username = excluded.username,
+      avatar_url = coalesce(excluded.avatar_url, poke_discord_profiles.avatar_url),
+      banner_url = coalesce(excluded.banner_url, poke_discord_profiles.banner_url),
+      accent_color = coalesce(excluded.accent_color, poke_discord_profiles.accent_color);
+  return owner_uuid;
+end;
+$$;
+revoke all on function public.upsert_poke_discord_profile(text,text,text,text,text)
+from public, anon, authenticated;
+grant execute on function public.upsert_poke_discord_profile(text,text,text,text,text)
+to authenticated;
+
+-- Une vitrine est consultable par son UUID seulement : aucune liste publique ni
+-- aucun accès à la table des sauvegardes privées.
+create or replace function public.get_poke_discord_profile(p_user_id uuid)
+returns table (
+  user_id uuid, discord_id text, display_name text, username text,
+  avatar_url text, banner_url text, accent_color text,
+  public_progress jsonb, updated_at timestamptz
+)
+language sql stable security definer set search_path = '' as $$
+  select p.user_id, p.discord_id, p.display_name, p.username,
+         p.avatar_url, p.banner_url, p.accent_color,
+         p.public_progress, p.updated_at
+  from public.poke_discord_profiles p
+  where p.user_id = p_user_id
+  limit 1;
+$$;
+revoke all on function public.get_poke_discord_profile(uuid)
+from public, anon, authenticated;
+grant execute on function public.get_poke_discord_profile(uuid) to anon, authenticated;
+
+-- Contrôles avant fusion :
+-- 1. Un invité NE peut pas lire poke_cloud_collections ni poke_discord_profiles.
+-- 2. Deux comptes Discord différents ne peuvent pas modifier les données d'autrui.
+-- 3. Un lecteur anonyme peut invoquer get_poke_discord_profile(uuid).
+-- 4. Un compte anonyme sans identité Discord ne peut pas créer un profil.
+-- 5. La clé sb_secret / service_role ne doit JAMAIS être dans les fichiers GitHub.
+) then
     raise exception 'Avatar Discord invalide';
   end if;
   if p_banner_url is not null and p_banner_url !~
-     '^https://cdn\.discordapp\.com/banners/[0-9]{16,22}/[A-Za-z0-9_]+\.(png|webp|gif)$' then
+     ('^https://cdn\.discordapp\.com/banners/' || verified_discord_id ||
+      '/[A-Za-z0-9_]+\.(png|webp|gif)
+  if p_accent_color is not null and p_accent_color !~ '^#[0-9A-Fa-f]{6}$' then
+    raise exception 'Couleur Discord invalide';
+  end if;
+
+  insert into public.poke_discord_profiles
+    (user_id, discord_id, display_name, username, avatar_url, banner_url, accent_color)
+  values (owner_uuid, verified_discord_id, trim(p_display_name), trim(p_username),
+          p_avatar_url, p_banner_url, p_accent_color)
+  on conflict (user_id) do update
+  set discord_id = excluded.discord_id,
+      display_name = excluded.display_name,
+      username = excluded.username,
+      avatar_url = coalesce(excluded.avatar_url, poke_discord_profiles.avatar_url),
+      banner_url = coalesce(excluded.banner_url, poke_discord_profiles.banner_url),
+      accent_color = coalesce(excluded.accent_color, poke_discord_profiles.accent_color);
+  return owner_uuid;
+end;
+$$;
+revoke all on function public.upsert_poke_discord_profile(text,text,text,text,text)
+from public, anon, authenticated;
+grant execute on function public.upsert_poke_discord_profile(text,text,text,text,text)
+to authenticated;
+
+-- Une vitrine est consultable par son UUID seulement : aucune liste publique ni
+-- aucun accès à la table des sauvegardes privées.
+create or replace function public.get_poke_discord_profile(p_user_id uuid)
+returns table (
+  user_id uuid, discord_id text, display_name text, username text,
+  avatar_url text, banner_url text, accent_color text,
+  public_progress jsonb, updated_at timestamptz
+)
+language sql stable security definer set search_path = '' as $$
+  select p.user_id, p.discord_id, p.display_name, p.username,
+         p.avatar_url, p.banner_url, p.accent_color,
+         p.public_progress, p.updated_at
+  from public.poke_discord_profiles p
+  where p.user_id = p_user_id
+  limit 1;
+$$;
+revoke all on function public.get_poke_discord_profile(uuid)
+from public, anon, authenticated;
+grant execute on function public.get_poke_discord_profile(uuid) to anon, authenticated;
+
+-- Contrôles avant fusion :
+-- 1. Un invité NE peut pas lire poke_cloud_collections ni poke_discord_profiles.
+-- 2. Deux comptes Discord différents ne peuvent pas modifier les données d'autrui.
+-- 3. Un lecteur anonyme peut invoquer get_poke_discord_profile(uuid).
+-- 4. Un compte anonyme sans identité Discord ne peut pas créer un profil.
+-- 5. La clé sb_secret / service_role ne doit JAMAIS être dans les fichiers GitHub.
+) then
     raise exception 'Bannière Discord invalide';
   end if;
   if p_accent_color is not null and p_accent_color !~ '^#[0-9A-Fa-f]{6}$' then
