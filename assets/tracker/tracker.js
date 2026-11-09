@@ -205,8 +205,12 @@ function profileShowcasePage(){
   if(state.loading)return '<section class="section" role="status"><h2>Chargement du profil Discord…</h2></section>';
   if(state.error||!state.profile)return '<section class="section"><h2>Profil indisponible</h2><p class="muted">'+safe(state.error||"Ce profil n'existe pas.")+'</p><a class="green" href="suivi.html">Créer mon profil</a></section>';
   const p=state.profile;
+  // Le CDN Discord peut servir plusieurs résolutions : on demande un format
+  // adapté à l'affichage, y compris sur les écrans haute densité de pixels.
   const img=source=>typeof source==="string"&&/^https:\/\/cdn\.discordapp\.com\/(avatars|banners|embed\/avatars)\//.test(source)?safe(source):"";
-  const avatar=img(p.avatar_url),banner=img(p.banner_url);
+  const cdnSize=(url,size)=>url ? url+(url.includes("?")?"&":"?")+"size="+size : "";
+  const avatar=cdnSize(img(p.avatar_url),256);
+  const banner=cdnSize(img(p.banner_url),2048);
   const color=typeof p.accent_color==="string"&&/^#[0-9a-fA-F]{6}$/.test(p.accent_color)?p.accent_color:"#5467d8";
   const entries=Array.isArray(p.public_progress?.rows)?p.public_progress.rows:[];
   const rows=entries.slice(0,100).map(r=>{
@@ -217,8 +221,8 @@ function profileShowcasePage(){
     if(caught<0||caught>total||goals<0||goals>100)return null;
     return {id,save,game:gameName(id),cover:coverOf(id),caught,total,dexPercent:total?Math.round(caught/total*100):0,goalPercent:goals};
   }).filter(Boolean);
-  const avatarHTML=avatar?'<img class="discord-avatar" src="'+avatar+'" alt="Avatar Discord" referrerpolicy="no-referrer">':'<span class="discord-avatar discord-avatar-fallback">★</span>';
-  const bannerHTML=banner?'<img class="discord-banner-image" src="'+banner+'" alt="Bannière Discord" referrerpolicy="no-referrer">':'';
+  const avatarHTML=avatar?'<img class="discord-avatar" src="'+avatar+'" srcset="'+cdnSize(img(p.avatar_url),128)+' 128w, '+avatar+' 256w, '+cdnSize(img(p.avatar_url),512)+' 512w" sizes="104px" alt="Avatar Discord" decoding="async" referrerpolicy="no-referrer">':'<span class="discord-avatar discord-avatar-fallback">★</span>';
+  const bannerHTML=banner?'<img class="discord-banner-image" src="'+banner+'" srcset="'+cdnSize(img(p.banner_url),1024)+' 1024w, '+banner+' 2048w, '+cdnSize(img(p.banner_url),4096)+' 4096w" sizes="100vw" alt="Bannière Discord" decoding="async" referrerpolicy="no-referrer">':'';
   const totalCaught=rows.reduce((sum,r)=>sum+r.caught,0);
   return '<section class="discord-profile"><div class="discord-banner" style="background-color:'+color+'">'+bannerHTML+'</div><div class="discord-profile-body">'+avatarHTML+'<div class="discord-profile-names"><div class="eyebrow">PROFIL POKÉ AGENDA · DISCORD</div><h1>'+safe(p.display_name||"Dresseur")+'</h1><p class="muted">@'+safe(p.username||"discord")+'</p></div><div class="discord-stats"><span><b>'+rows.length+'</b> sauvegarde(s)</span><span><b>'+totalCaught+'</b> Pokémon cochés</span></div></div></section>'
     +'<section class="section"><div class="section-title"><div><div class="eyebrow">VITRINE DE PROGRESSION</div><h2>Les aventures de '+safe(p.display_name||"ce dresseur")+'</h2><p class="muted">Dernière synchronisation : '+safe(p.updated_at?new Date(p.updated_at).toLocaleString("fr-FR"):"inconnue")+'</p></div><a class="green" href="suivi.html">Créer mon suivi →</a></div><div class="showcase-grid">'+(showcaseCards(rows)||'<div class="empty">Pas encore de sauvegarde publiée.</div>')+'</div></section>'
