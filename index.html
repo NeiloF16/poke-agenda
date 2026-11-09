@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#08131b">
+<meta name="theme-color" content="#103554">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="description" content="Poké Agenda : glossaire écrit des activités régulières, échanges, distributions et événements historiques de chaque jeu Pokémon.">
 <title>Poké-Agenda</title>
 <link rel="stylesheet" href="assets/calendar/calendar.css?v=events-1">
+<link rel="stylesheet" href="assets/theme/editorial-v1.css?v=1">
 </head>
-<body>
+<body data-design="editorial-v1" data-page="home">
 <!-- Inline symbols ensure the site works without an internet connection. -->
 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="display:none">
  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3z"/></symbol>
@@ -33,7 +34,7 @@
 <div class="menu-backdrop" id="menuBackdrop"></div>
 <div id="app">
  <aside class="sidebar" id="sidebar">
-  <div class="brand"><span class="ball"></span><div>PokéAgenda<div class="brand-sub"></div></div></div>
+  <div class="brand"><span class="ball"></span><div>PokéAgenda<div class="brand-sub">Guides · Événements · Collection</div></div></div>
   <div class="nav-heading">Explorer</div>
   <button class="nav active" data-view="dashboard"><span class="icon"><svg><use href="#i-home"/></svg></span>Vue d’ensemble</button>
   <button class="nav" data-view="library"><span class="icon"><svg><use href="#i-book"/></svg></span>Bibliothèque <span class="nav-badge">23</span></button><a class="nav" href="suivi.html"><span class="icon"><svg><use href="#i-check"/></svg></span>Suivi Pokédex <span class="nav-badge">NOUVEAU</span></a>
