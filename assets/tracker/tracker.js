@@ -323,9 +323,9 @@ function resetSelectedDex(){
   const affected=d.ids.filter(id=>seen.has(id));
   if(!affected.length)return false;
   const message="Réinitialiser le Pokédex « "+d.label+" » pour la partie « "+s.name+
-    " » ("+selectedVersion+") ?\\n\\n"+
+    " » ("+selectedVersion+") ?\n\n"+
     affected.length+" Pokémon possédés seront décochés. S'ils figurent aussi dans un autre Pokédex "+
-    "de cette partie, ils y seront également décochés.\\n\\n"+
+    "de cette partie, ils y seront également décochés.\n\n"+
     "Les autres parties, les autres versions et les objectifs du jeu resteront inchangés.";
   if(!confirm(message))return false;
   const previous=Array.isArray(s.owned)?s.owned.slice():s.owned;
