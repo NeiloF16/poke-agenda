@@ -238,8 +238,20 @@
       await createCollection(seed);
     }
   }
+  function cleanDiscordUsername(value) {
+    // Les anciens tags Discord (ex. flyneilo#0) n'ont plus leur place ici.
+    return String(value ?? "").trim().replace(/#\d{1,4}$/, "").slice(0,80);
+  }
   async function syncDiscordProfile(session) {
     if (!user) return;
+    const c = await getClient();
+    // Une session Supabase restaurée n'a généralement plus son provider_token
+    // Discord. Ne pas écraser le vrai nom d'affichage avec le @username.
+    const {data:existing,error:existingError} = await c.from("poke_discord_profiles")
+      .select("user_id,display_name,username,avatar_url,banner_url,accent_color")
+      .eq("user_id",user.id).maybeSingle();
+    if (existingError) throw existingError;
+
     let discord = null;
     const token = session?.provider_token;
     if (token) {
@@ -247,31 +259,58 @@
         const response = await fetch("https://discord.com/api/v10/users/@me",{
           headers:{Authorization:"Bearer " + token},cache:"no-store"
         });
-        if (response.ok) discord = await response.json();
-      } catch { /* Utilise les métadonnées OAuth comme repli. */ }
+        if (response.ok) {
+          const payload = await response.json();
+          if (payload && typeof payload.id === "string" && typeof payload.username === "string")
+            discord = payload;
+        }
+      } catch { /* La sauvegarde et le profil existant restent accessibles. */ }
     }
     const metadata = user.user_metadata || {};
+    const username = cleanDiscordUsername(discord?.username || existing?.username ||
+      metadata.user_name || metadata.preferred_username || metadata.name || "Dresseur") || "Dresseur";
+    const fallbackName = String(metadata.full_name || metadata.global_name ||
+      metadata.name || username).trim().slice(0,80) || username;
+    const displayName = String(discord?.global_name || discord?.username ||
+      existing?.display_name || fallbackName).trim().slice(0,80) || username;
+
+    // Sans nouvelles données Discord, conserver le profil précédent ; seul
+    // un ancien suffixe #1234 peut justifier une normalisation en base.
+    if (!discord && existing && existing.username === username) {
+      profile = existing;
+      return;
+    }
+
     const discordId = discord?.id;
-    const name = String(discord?.global_name || discord?.username ||
-      metadata.full_name || metadata.name || metadata.user_name || "Dresseur").slice(0,80);
-    const username = String(discord?.username || metadata.user_name ||
-      metadata.name || name).slice(0,80);
-    const avatar = discord?.id && discord?.avatar
-      ? imgURL("https://cdn.discordapp.com/avatars/" + discordId + "/" + discord.avatar + (discord.avatar.startsWith("a_") ? ".gif" : ".webp"))
-      : imgURL(metadata.avatar_url);
-    const banner = discord?.id && discord?.banner
-      ? imgURL("https://cdn.discordapp.com/banners/" + discordId + "/" + discord.banner + (discord.banner.startsWith("a_") ? ".gif" : ".webp"))
-      : null;
-    const {error} = await (await getClient()).rpc("upsert_poke_discord_profile",{
-      p_display_name:name || "Dresseur",p_username:username || "Dresseur",
-      p_avatar_url:avatar,p_banner_url:banner,p_accent_color:accent(discord?.accent_color)
+    const avatar = discordId && discord.avatar
+      ? imgURL("https://cdn.discordapp.com/avatars/" + discordId + "/" + discord.avatar +
+        (discord.avatar.startsWith("a_") ? ".gif" : ".webp"))
+      : imgURL(existing?.avatar_url) || imgURL(metadata.avatar_url);
+    const banner = discordId && discord.banner
+      ? imgURL("https://cdn.discordapp.com/banners/" + discordId + "/" + discord.banner +
+        (discord.banner.startsWith("a_") ? ".gif" : ".webp"))
+      : imgURL(existing?.banner_url);
+    const {error} = await c.rpc("upsert_poke_discord_profile",{
+      p_display_name:displayName,p_username:username,
+      p_avatar_url:avatar,p_banner_url:banner,
+      p_accent_color:accent(discord?.accent_color) || existing?.accent_color || null
     });
     if (error) throw error;
-    const {data:own,error:readError} = await (await getClient()).from("poke_discord_profiles")
+    const {data:own,error:readError} = await c.from("poke_discord_profiles")
       .select("user_id,display_name,username,avatar_url,banner_url,accent_color")
       .eq("user_id",user.id).maybeSingle();
     if (readError) throw readError;
     profile = own;
+  }
+  async function refreshDiscordProfile() {
+    if (!user) return login();
+    if (!ready || conflict || (dirty && !(await flush()))) {
+      alert("Sauvegarde cloud non prête : exporte ton JSON et résous les conflits avant de réactualiser Discord.");
+      return;
+    }
+    // Demande un nouvel aller-retour OAuth pour récupérer global_name, avatar,
+    // bannière, sans changer le compte Supabase ni son identifiant public.
+    return login();
   }
   async function bootAccount(session) {
     if (!isDiscord(session?.user)) return;
@@ -368,7 +407,7 @@
       if (document.visibilityState === "visible" && dirty && !conflict) schedule();
     });
   }
-  window.PokeCloud = {init,login,logout,copyLink,reloadFromCloud,queueSync,flush,
+  window.PokeCloud = {init,login,refreshDiscordProfile,logout,copyLink,reloadFromCloud,queueSync,flush,
     statusInfo,viewerState,isEnabled:() => !readOnlyLegacy && !isPublic,
     isPublic,profileLink};
 })();
