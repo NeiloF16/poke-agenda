@@ -42,6 +42,54 @@
       '<div class="entry-foot">'+(urlOk(source)?'<a href="'+escaped(source)+'" target="_blank" rel="noopener noreferrer">Source / approfondir ↗</a>':'')+
       '<span class="source-note">'+(historical?'Archive ou événement daté':'Information à vérifier selon la version')+'</span></div></article>';
   }
+
+  const archive=window.POKE_DIST_ARCHIVES||null;
+  const archiveRecords=archive?.records?.filter(item=>
+    Array.isArray(item.games)&&item.games.includes(game.id))||[];
+  const archiveMatches=item=>!filter||[
+    item.name,item.period,item.region,item.method,item.detail,item.ot,item.tid
+  ].some(value=>String(value||"").toLocaleLowerCase("fr").includes(filter));
+  function archiveRecordCard(record){
+    const source=archive.sources?.[record.source];
+    return '<article class="archive-record">'+
+      '<div class="entry-tags"><span class="tag">'+escaped(record.region)+'</span>'+
+      '<span class="tag scope">'+escaped(record.method)+'</span></div>'+
+      '<h3>'+escaped(record.name)+'</h3>'+
+      '<p>'+escaped(record.detail)+'</p>'+
+      '<div class="archive-facts"><span>Dates : <strong>'+escaped(record.period)+'</strong></span>'+
+      (record.ot?'<span>DO : <strong>'+escaped(record.ot)+'</strong></span>':'')+
+      (record.tid?'<span>ID : <strong>'+escaped(record.tid)+'</strong></span>':'')+
+      '</div>'+
+      (source&&urlOk(source.url)?'<a class="archive-link" href="'+escaped(source.url)+
+        '" target="_blank" rel="noopener noreferrer">Vérifier sur Pokébip ↗</a>':'')+
+      '</article>';
+  }
+  function archivePanel(){
+    if(!archive)return '';
+    const refs=(archive.perGame?.[game.id]||[])
+      .map(key=>archive.sources?.[key]).filter(source=>source&&urlOk(source.url));
+    const examples=archiveRecords.filter(archiveMatches);
+    const links=refs.map(source=>
+      '<a class="archive-source" href="'+escaped(source.url)+
+      '" target="_blank" rel="noopener noreferrer"><span>↗</span><strong>'+
+      escaped(source.title)+'</strong></a>').join('');
+    if(filter&&!examples.length&&!refs.some(source=>source.title.toLocaleLowerCase('fr').includes(filter)))return '';
+    return '<section class="archive-section" id="archives">'+
+      '<div class="archive-heading"><div class="kicker">ARCHIVES · SOURCES PRIORITAIRES</div>'+
+      '<h2>Inventaire des distributions Pokémon</h2>'+
+      '<p>Répertoires de référence Pokébip pour consulter les événements officiels, y compris les distributions françaises, japonaises et mondiales. Les archives couvrent des générations entières : vérifie la compatibilité exacte de chaque jeu.</p></div>'+
+      '<div class="archive-warning"><strong>Couverture éditoriale :</strong> '+escaped(archive.notice)+
+      ' Références revues le '+escaped(archive.verifiedAt)+'.</div>'+
+      '<h3 class="archive-subheading">Répertoires complets à consulter</h3>'+
+      '<div class="archive-sources">'+links+'</div>'+
+      '<div class="archive-heading" style="margin-top:28px">'+
+      '<div class="kicker">EXEMPLES HISTORIQUES VÉRIFIÉS</div>'+
+      '<h3>'+examples.length+' dossier'+(examples.length>1?'s':'')+' mis en avant pour ce jeu</h3>'+
+      '<p>Cette sélection ne reprend pas toutes les fiches de Pokébip. Les liens ci-dessus mènent aux listes détaillées avec les autres distributions, DO, ID et caractéristiques.</p></div>'+
+      (examples.length?'<div class="archive-record-grid">'+examples.map(archiveRecordCard).join('')+'</div>':
+      '<div class="empty">Aucun exemple vérifié ne correspond à cette recherche. Consulte les répertoires de référence pour la liste détaillée.</div>')+
+      '</section>';
+  }
   function chapter(id){
     const matches=grouped[id].filter(e=>!filter||[e.name,e.description,e.when,e.scope].some(t=>String(t||"").toLocaleLowerCase("fr").includes(filter)));
     if(!matches.length&&filter)return "";
@@ -49,10 +97,11 @@
       '<div class="entry-grid">'+matches.map(card).join('')+'</div></section>';
   }
   function showChapters(){
-    const html=order.map(chapter).join("");
+    const html=order.map(id=>id==="distributions"?chapter(id)+archivePanel():chapter(id)).join("");
     document.getElementById("chapters").innerHTML=html||'<div class="empty">Aucun résultat. Essaie un autre mot-clé.</div>';
     const total=entries.filter(e=>!filter||[e.name,e.description,e.when,e.scope].some(t=>String(t||"").toLocaleLowerCase("fr").includes(filter))).length;
-    document.getElementById("searchCount").textContent=total+" résultat"+(total>1?"s":"");
+    const archiveHits=archiveRecords.filter(archiveMatches).length;
+    document.getElementById("searchCount").textContent=(total+archiveHits)+" résultat"+(total+archiveHits>1?"s":"");
   }
   const editionLinks=(versions[game.id]?.versions||[]).map(name=>
     '<a class="btn secondary" href="suivi.html?game='+game.id+'&amp;version='+encodeURIComponent(name)+'">☑ Suivi '+escaped(name)+'</a>').join("");
@@ -65,7 +114,7 @@
       games.map(g=>'<option value="'+g.id+'" '+(g.id===game.id?'selected':'')+'>'+escaped(g.name)+'</option>').join('')+
     '</select><button type="button" class="btn" id="favoriteToggle">♡ Favori</button>'+
     '<button type="button" class="btn" id="todayToggle">✓ Consulté aujourd’hui</button>'+editionLinks+'</div>'+
-    '<div class="guidance"><span aria-hidden="true">⚠</span><div><strong>Information historique ≠ distribution active.</strong> Les conditions, dates, langues et régions importent. Cette première édition constitue un glossaire enrichissable, pas une garantie d’exhaustivité des anciennes distributions.</div></div>'+
+    '<div class="guidance"><span aria-hidden="true">⚠</span><div><strong>Information historique ≠ distribution active.</strong> Les conditions, dates, langues et régions importent. Notre base locale ne contient qu’une sélection des événements : consulte aussi les inventaires Pokébip liés dans chaque jeu.</div></div>'+
     '<nav class="jump" aria-label="Chapitres">'+order.map(id=>'<a href="#'+id+'">'+labels[id][0]+' <span>'+chapterCount(id)+'</span></a>').join('')+'</nav>'+
     '<div class="search-panel"><label for="guideSearch">Rechercher dans ce jeu</label><input type="search" id="guideSearch" placeholder="Ex. : Mew, échange, vendredi, Japon…"><output id="searchCount"></output></div>'+
     '<div id="chapters"></div>'+
