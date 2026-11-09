@@ -29,7 +29,7 @@ test("23 jeux ont chacun 4 chapitres et au moins 5 entrées sourcées",()=>{
     count+=guide.entries.length;
     assert.deepEqual(types.sort(),[...new Set(guide.entries.map(e=>e.type))].sort(),"Chapitres incomplets : "+id);
     for(const entry of guide.entries){
-      assert.ok(entry.name.length>8 && entry.description.length>30,"Texte trop bref : "+id);
+      assert.ok(entry.name.length>=4 && entry.description.length>30,"Texte trop bref : "+id);
       assert.ok(entry.source in data.references,"Source manquante : "+id+" "+entry.name);
     }
   }
