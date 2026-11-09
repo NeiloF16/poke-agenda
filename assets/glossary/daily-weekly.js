@@ -843,12 +843,12 @@ window.POKE_DAILY_WEEKLY={
       ],
       "freq": "weekly",
       "title": "Rival",
-      "place": "Mont Sélénite / Ligue",
-      "detail": "Les possibilités de revanche dépendent de la progression ; vérifier la fiche source.",
+      "place": "Plateau Indigo (2e étage)",
+      "detail": "Après le combat contre Sandra et Peter dans l'Antre du Dragon, rejouer la revanche du rival le lundi ou le mercredi.",
       "source": "https://www.pokebip.com/page/jeux-video/pokemon-heartgold-soulsilver/evenements-lies-au-temps",
       "days": [
-        2,
-        4
+        1,
+        3
       ],
       "time": ""
     },
@@ -959,11 +959,11 @@ window.POKE_DAILY_WEEKLY={
       ],
       "freq": "weekly",
       "title": "Aquaria",
-      "place": "Bateau de Kanto/Johto",
-      "detail": "Vérifier les traversées et les rencontres à bord selon le jour.",
+      "place": "Carmin sur Mer / Oliville",
+      "detail": "Traversée du mercredi (Carmin → Oliville) ou du vendredi (Oliville → Carmin), avec des dresseurs différents à bord.",
       "source": "https://www.pokebip.com/page/jeux-video/pokemon-heartgold-soulsilver/evenements-lies-au-temps",
       "days": [
-        1,
+        3,
         5
       ],
       "time": ""
