@@ -44,6 +44,11 @@
   }
 
   const archive=window.POKE_DIST_ARCHIVES||null;
+  const eventEngine=window.POKE_EVENT_ENGINE||null;
+  const regular=eventEngine?.routinesForGame(game.id)||[];
+  const dated=eventEngine?.all().filter(e=>e.gameIds.includes(game.id))||[];
+  const undated=eventEngine?.undated().filter(e=>e.gameIds.includes(game.id))||[];
+
   const archiveRecords=archive?.records?.filter(item=>
     Array.isArray(item.games)&&item.games.includes(game.id))||[];
   const archiveMatches=item=>!filter||[
@@ -90,6 +95,64 @@
       '<div class="empty">Aucun exemple vérifié ne correspond à cette recherche. Consulte les répertoires de référence pour la liste détaillée.</div>')+
       '</section>';
   }
+const days=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  const isVisible=(item)=>!filter||Object.values(item).some(v=>
+    (typeof v==="string"&&v.toLocaleLowerCase("fr").includes(filter)));
+  function datedPanel(){
+    const matched=dated.filter(isVisible);
+    const unknown=undated.filter(isVisible);
+    if(filter&&!matched.length&&!unknown.length)return "";
+    const textDate=value=>eventEngine?.formatDate(value)||escaped(value);
+    const ordered=matched.slice().sort((a,b)=>b.start.localeCompare(a.start));
+    const list=ordered.map(e=>{
+      const status=eventEngine.classify(e);
+      const label={active:"En cours",past:"Terminé",upcoming:"À venir",unknown:"À vérifier"}[status];
+      return '<article class="archive-record dated-event"><div class="entry-tags"><span class="tag">'+escaped(label)+
+        '</span><span class="tag scope">'+escaped(e.type||"Distribution")+'</span></div>'+
+        '<h3>'+escaped(e.title)+'</h3><p>'+escaped(e.description)+'</p>'+
+        '<div class="archive-facts"><span>Début : <strong>'+escaped(textDate(e.start))+'</strong></span>'+
+        '<span>Fin : <strong>'+escaped(textDate(e.end))+'</strong></span>'+
+        (e.endHourUTC?'<span>Heure de fin : '+escaped(e.endHourUTC)+' UTC</span>':'')+
+        '<span>'+escaped(e.method)+'</span></div>'+
+        (e.ot||e.tid?'<div class="archive-facts">'+(e.ot?'DO : '+escaped(e.ot)+' ':'')+
+        (e.tid?' · ID : '+escaped(e.tid):'')+'</div>':'')+
+        (e.pkhexNote?'<p class="pkhex-warning">'+escaped(e.pkhexNote)+'</p>':'')+
+        (urlOk(e.source)?'<a href="'+escaped(e.source)+'" target="_blank" rel="noopener noreferrer">Vérifier la fiche source ↗</a>':'')+
+        '</article>';
+    }).join("");
+    const uncertain=unknown.map(e=>'<article class="archive-record dated-event">'+
+      '<div class="entry-tags"><span class="tag scope">Fin non confirmée</span></div>'+
+      '<h3>'+escaped(e.title)+'</h3><p>'+escaped(e.description)+'</p>'+
+      (urlOk(e.source)?'<a href="'+escaped(e.source)+'" target="_blank" rel="noopener noreferrer">Consulter la source ↗</a>':'')+
+      '</article>').join("");
+    return '<section class="archive-section" id="dates"><div class="archive-heading">'+
+      '<div class="kicker">FENÊTRES OFFICIELLES · FRANCE</div><h2>Distributions et événements datés</h2>'+
+      '<p>Ces événements ont des dates vérifiées : les anciens restent dans les archives après leur expiration. Les événements dont la fin est inconnue sont séparés et jamais affichés comme actifs automatiquement.</p>'+
+      '</div><div class="archive-record-grid">'+(list+uncertain||'<div class="empty">Aucun événement daté vérifié dans ce jeu pour cette recherche.</div>')+
+      '</div><p class="pkhex-warning">Pour PKHeX : une fenêtre de distribution vérifiée est un repère, pas une preuve de légalité. Les cartes miracles, DO/ID, format, version et provenance sont à contrôler indépendamment.</p></section>';
+  }
+  function regularPanel(){
+    const items=regular.filter(isVisible);
+    if(filter&&!items.length)return "";
+    const sorted=items.slice().sort((a,b)=>a.freq.localeCompare(b.freq)||a.title.localeCompare(b.title,"fr"));
+    const cards=sorted.map(item=>
+      '<article class="archive-record routine-item">'+
+      '<div class="entry-tags"><span class="tag">'+
+      (item.freq==="daily"?"Chaque jour":"Chaque semaine")+'</span>'+
+      (item.days?.length&&item.freq==="weekly"?'<span class="tag scope">'+
+        escaped(item.days.map(day=>days[day]).join(", "))+'</span>':'')+
+      '</div><h3>'+escaped(item.title)+'</h3><p>'+escaped(item.detail)+'</p>'+
+      '<div class="archive-facts"><span>Lieu : <strong>'+escaped(item.place)+'</strong></span>'+
+      (item.time?'<span>Horaire : '+escaped(item.time)+'</span>':'')+'</div>'+
+      (urlOk(item.source)?'<a href="'+escaped(item.source)+'" target="_blank" rel="noopener noreferrer">Guide Pokébip ↗</a>':'')+
+      '</article>').join('');
+    return '<section class="archive-section" id="activites"><div class="archive-heading">'+
+      '<div class="kicker">TOURNÉE QUOTIDIENNE ET HEBDOMADAIRE</div>'+
+      '<h2>'+regular.length+' activités documentées pour ce jeu</h2>'+
+      '<p>Liste détaillée des activités cycliques recensées avec les sources Pokébip. Certaines nécessitent le Pokédex National ou la fin de l’histoire. Les jeux sans tâches à jour fixe restent accessibles via les chapitres du glossaire.</p>'+
+      '</div><div class="archive-record-grid">'+(cards||'<div class="empty">Aucune autre activité à horloge vérifiée dans ce jeu. Les chapitres habituels restent disponibles.</div>')+
+      '</div></section>';
+  }
   function chapter(id){
     const matches=grouped[id].filter(e=>!filter||[e.name,e.description,e.when,e.scope].some(t=>String(t||"").toLocaleLowerCase("fr").includes(filter)));
     if(!matches.length&&filter)return "";
@@ -97,11 +160,14 @@
       '<div class="entry-grid">'+matches.map(card).join('')+'</div></section>';
   }
   function showChapters(){
-    const html=order.map(id=>id==="distributions"?chapter(id)+archivePanel():chapter(id)).join("");
+    const html=order.map(id=>
+      id==="routines"?chapter(id)+regularPanel():
+      id==="distributions"?chapter(id)+datedPanel()+archivePanel():chapter(id)).join("");
     document.getElementById("chapters").innerHTML=html||'<div class="empty">Aucun résultat. Essaie un autre mot-clé.</div>';
     const total=entries.filter(e=>!filter||[e.name,e.description,e.when,e.scope].some(t=>String(t||"").toLocaleLowerCase("fr").includes(filter))).length;
     const archiveHits=archiveRecords.filter(archiveMatches).length;
-    document.getElementById("searchCount").textContent=(total+archiveHits)+" résultat"+(total+archiveHits>1?"s":"");
+    const extraHits=regular.filter(isVisible).length+dated.filter(isVisible).length+undated.filter(isVisible).length;
+    document.getElementById("searchCount").textContent=(total+archiveHits+extraHits)+" résultat"+(total+archiveHits+extraHits>1?"s":"");
   }
   const editionLinks=(versions[game.id]?.versions||[]).map(name=>
     '<a class="btn secondary" href="suivi.html?game='+game.id+'&amp;version='+encodeURIComponent(name)+'">☑ Suivi '+escaped(name)+'</a>').join("");
