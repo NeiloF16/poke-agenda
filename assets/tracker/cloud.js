@@ -143,7 +143,8 @@
     return {v:1,rows:rows.map(r => [
       Number(r.id),String(r.save || "").slice(0,50),
       Math.max(0,Number(r.caught) || 0),
-      Math.max(0,Math.min(100,Number(r.goalPercent) || 0))
+      Math.max(0,Math.min(100,Number(r.goalPercent) || 0)),
+      String(r.version || "").slice(0,50)
     ])};
   }
   async function updatePublicProgress() {
