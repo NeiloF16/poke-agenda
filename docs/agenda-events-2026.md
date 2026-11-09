@@ -61,3 +61,9 @@ node --test tests/*.test.mjs
 ```
 
 Cette refonte ne modifie ni Supabase ni les comptes Discord, les 38 suivis de version, les bannières personnelles ou les anciennes données locales.
+
+## Diagnostic de publication GitHub Pages (9 novembre 2026)
+
+Les deux premiers essais de publication du commit `ccf45aa` ont échoué lors du déploiement GitHub Pages, alors que le job de compilation a réussi. Le premier est resté en état `syncing_files` puis a atteint la limite de dix minutes ; le second a également expiré sans état final exploitable. Ceci indique un blocage dans l'étape de synchronisation/déploiement Pages et ne démontre pas une erreur de syntaxe JavaScript.
+
+Un **nouveau commit**, distinct d'un simple *re-run* du même artefact, est utilisé pour déclencher une publication GitHub Pages fraîche. Vérifier le résultat dans l'onglet Actions ; en cas de nouveaux délais dépassés, consulter le statut GitHub et envisager l'assistance GitHub Pages.
