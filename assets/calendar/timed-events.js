@@ -22,7 +22,7 @@ window.POKE_TIMED_EVENTS={
       "source": "https://www.pokemon.com/fr/actualites/recevez-un-peregrain-capable-devoluer-en-prismillon-au-motif-aleatoire-dans-legendes-pokemon-z-a",
       "secondary": "https://www.pokebip.com/news/7616/legendes-pokemon-z-a-distribution-dun-peregrain-evoluable-en-prismillon-aleatoire",
       "claimNote": "Fin le 19 novembre à 01:59 UTC (02:59 à Paris).",
-      "pkhexNote": "La période officielle de réception est documentée. Ne pas confondre cette date avec la date de rencontre ou d'évolution.",
+      "provenanceNote": "La période officielle de réception est documentée. Ne pas confondre cette date avec la date de rencontre ou d'évolution.",
       "sourceReviewed": "2026-11-09"
     },
     {
@@ -44,7 +44,7 @@ window.POKE_TIMED_EVENTS={
       "source": "https://www.pokebip.com/news/7628/legendes-pokemon-z-a-distribution-de-prismillon-motif-poke-ball",
       "secondary": "https://www.pokemon.com/uk/news/receive-a-poke-ball-pattern-vivillon-in-pokemon-legends-z-a",
       "claimNote": "Fin officielle : 26 février 2027 à 01:59 UTC.",
-      "pkhexNote": "L'événement indique un DO et un ID fixes ; contrôler également la version et la provenance.",
+      "provenanceNote": "L'événement indique un DO et un ID fixes ; contrôler également la version et la provenance.",
       "sourceReviewed": "2026-11-09"
     },
     {
@@ -106,7 +106,7 @@ window.POKE_TIMED_EVENTS={
       "end": "2026-11-13",
       "method": "Événement en jeu / études et bonus",
       "region": "France (heure locale)",
-      "description": "Événement du 9 novembre à 10 h au 13 novembre à 20 h, avec bonus et apparitions, dont des contenus spéciaux liés aux Pokémon Dynamax. Ce n'est pas un Cadeau Mystère transférable via PKHeX.",
+      "description": "Événement du 9 novembre à 10 h au 13 novembre à 20 h, avec bonus et apparitions, dont des contenus spéciaux liés aux Pokémon Dynamax. Cet événement se déroule dans Pokémon GO et ne correspond pas à un Cadeau Mystère des jeux principaux.",
       "source": "https://www.pokebip.com/news/7591/pokemon-go-ame-sauvage",
       "claimNote": "9 novembre, 10 h → 13 novembre, 20 h, heure locale.",
       "sourceReviewed": "2026-11-09"

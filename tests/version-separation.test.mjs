@@ -186,3 +186,68 @@ test("la vitrine publique n'affiche aucun contrôle de modification du Pokédex"
   assert.doesNotMatch(evalCode("profileShowcasePage()"),/data-action="complete-dex"/);
   assert.equal(evalCode("completeSelectedDex()"),false);
 });
+
+
+test("le bouton de réinitialisation remet le Dex actif à zéro sans toucher à la version jumelle",()=>{
+  const {evalCode,memory}=session();
+  const snapshot=JSON.parse(memory.get("poke-agenda-tracker-v3"));
+  assert.match(evalCode("dexBody(getSlot())"),/data-action="reset-dex"/);
+  assert.match(evalCode("dexBody(getSlot())"),/Réinitialiser ce Pokédex/);
+  evalCode("action('complete-dex')");
+  assert.equal(evalCode("getSlot().owned.length"),5);
+  evalCode("action('reset-dex')");
+  const after=JSON.parse(memory.get("poke-agenda-tracker-v3"));
+  assert.deepEqual(after.games["14"].find(s=>s.id==="ro-ancien"),
+    snapshot.games["14"].find(s=>s.id==="ro-ancien"));
+  assert.deepEqual(after.games["14"].find(s=>s.id==="sa-ancien").owned,[]);
+  assert.deepEqual(after.games["14"].find(s=>s.id==="sa-ancien").done,{});
+  assert.match(evalCode("dexBody(getSlot())"),/data-action="reset-dex" disabled aria-disabled="true"/);
+  assert.equal(evalCode("resetSelectedDex()"),false);
+  assert.equal(evalCode("getSlot().version"),"Saphir Alpha");
+});
+
+test("annuler la remise à zéro ne change rien à la sauvegarde",()=>{
+  const {evalCode,memory}=session();
+  const before=memory.get("poke-agenda-tracker-v3");
+  evalCode("confirm=()=>false");
+  assert.equal(evalCode("resetSelectedDex()"),false);
+  assert.equal(memory.get("poke-agenda-tracker-v3"),before);
+  assert.equal(evalCode("getSlot().owned.length"),1);
+});
+
+test("réinitialiser le régional retire aussi les espèces communes du national, sans toucher aux autres",()=>{
+  const fixture={version:3,games:{"9":[{
+    id:"p1",version:"Platine",name:"Partie Sinnoh",owned:[1,2,400,600],
+    done:{"story-0":true},custom:[]
+  }]},active:{"9":"p1"}};
+  const {evalCode,memory}=session("https://example.com/suivi.html?game=9&version=Platine",fixture);
+  assert.equal(evalCode("activeDex().label"),"Sinnoh étendu");
+  assert.equal(evalCode("resetSelectedDex()"),true);
+  assert.equal(evalCode("getSlot().owned.join(',')"),"400,600");
+  evalCode("dexIndex=1");
+  assert.equal(evalCode("activeDex().label"),"National");
+  assert.equal(evalCode("resetSelectedDex()"),true);
+  const saved=JSON.parse(memory.get("poke-agenda-tracker-v3")).games["9"][0];
+  assert.deepEqual(saved.owned,[600]);
+  assert.deepEqual(saved.done,{"story-0":true});
+  assert.equal(evalCode("resetSelectedDex()"),false);
+  assert.match(evalCode("dexBody(getSlot())"),/Réinitialiser ce Pokédex/);
+});
+
+test("si le navigateur refuse la sauvegarde, la remise à zéro annule les changements",()=>{
+  const {evalCode,memory}=session();
+  const before=memory.get("poke-agenda-tracker-v3");
+  evalCode('localStorage.setItem=()=>{throw new Error("Storage full")}');
+  assert.equal(evalCode("resetSelectedDex()"),false);
+  assert.equal(memory.get("poke-agenda-tracker-v3"),before);
+  assert.equal(evalCode("getSlot().owned.length"),1);
+});
+
+test("aucune action de remise à zéro disponible depuis une vitrine publique",()=>{
+  const profile={display_name:"Public",username:"public",updated_at:"2026-11-09T18:00:00Z",
+    public_progress:{v:1,rows:[[14,"Alpha",2,50,"Saphir Alpha"]]}};
+  const {evalCode}=session("https://example.com/suivi.html?profil=123e4567-e89b-42d3-a456-426614174000",
+    ownerData,profile);
+  assert.doesNotMatch(evalCode("profileShowcasePage()"),/data-action="reset-dex"/);
+  assert.equal(evalCode("resetSelectedDex()"),false);
+});

@@ -37,3 +37,8 @@
 .dex-complete{font-size:12px;white-space:normal;min-height:39px}
 .dex-complete[disabled]{cursor:default;opacity:.72;background:#29473b;color:#c2ebce;border-color:#4a735e}
 @media(max-width:600px){.dex-controls .dex-complete{width:100%}}
+
+/* Bouton de remise à zéro du Dex sélectionné. */
+.dex-reset{font-size:12px;white-space:normal;min-height:39px}
+.dex-reset[disabled]{cursor:default;opacity:.45;border-color:#405861;background:#223640;color:#9eafb7}
+@media(max-width:600px){.dex-controls .dex-reset{width:100%}}

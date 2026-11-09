@@ -146,7 +146,7 @@ function hubPreview(){
     '<button class="link-button" data-view="events">Tout l’historique →</button></div>'+
     '<div class="live-event-grid">'+body+'</div>'+
     (past.length?'<div class="section-head" style="margin-top:22px"><div>'+
-      '<div class="section-kicker">POUR LA COLLECTION ET PKHEX</div>'+
+      '<div class="section-kicker">ARCHIVES DES ÉVÉNEMENTS</div>'+
       '<h2>Récemment terminés</h2><p class="section-sub">Les périodes restent consultables après expiration.</p></div></div>'+
       '<div class="live-event-grid">'+past.map(datedEventCard).join('')+'</div>':'')+
     '</section>';
@@ -163,8 +163,8 @@ function eventDesk(){
     !search||norm(r.name+' '+r.detail+' '+r.region+' '+r.period+' '+r.ot+' '+r.tid).includes(search)):[];
   return '<section class="section"><div class="section-kicker">ARCHIVES FRANÇAISES · POKÉ AGENDA</div>'+
     '<h2>Événements Pokémon et distributions</h2>'+
-    '<p class="section-sub">Périodes de distribution et raids en cours, à venir ou expirés. Les anciennes distributions provenant de l’Evendex restent consultables pour la collection et PKHeX.</p>'+
-    '<p class="live-disclaimer">Les dates affichées sont les fenêtres documentées, pas une garantie de légalité PKHeX. Contrôle aussi DO/ID, version, carte miracle, provenance et éventuels changements de date de console.</p>'+
+    '<p class="section-sub">Périodes de distribution et raids en cours, à venir ou expirés. Les anciennes distributions provenant de l’Evendex restent consultables pour retrouver leurs dates et leurs conditions officielles.</p>'+
+    '<p class="live-disclaimer">Les dates affichées sont les fenêtres documentées, sans garantie automatique de provenance légitime. Contrôle aussi DO/ID, version, carte miracle, provenance et éventuels changements de date de console.</p>'+
     '<div class="live-tabs">'+[
       ['active','En cours · '+active.length],['past','Terminés · '+(past.length+FULL_ARCHIVES.length)],['upcoming','À venir · '+upcoming.length],['all','Tout consulter']
     ].map(([key,label])=>'<button class="chip '+(eventTab===key?'selected':'')+

@@ -42,5 +42,5 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 /* Fiches de tâches quotidiennes et événements datés */
 .archive-record.routine-item{background:linear-gradient(155deg,#203a40,#19313d);border-color:#3e6768}
 .archive-record.dated-event{border-color:#806f52}
-.pkhex-warning{font-size:12px;line-height:1.6;color:#f0d6a3;border-left:3px solid #dfb76b;background:#483b2c80;padding:10px 12px;margin-top:15px;border-radius:0 7px 7px 0}
+.event-note{font-size:12px;line-height:1.6;color:#f0d6a3;border-left:3px solid #dfb76b;background:#483b2c80;padding:10px 12px;margin-top:15px;border-radius:0 7px 7px 0}
 .dated-event a,.routine-item a{display:inline-flex;margin-top:12px;font-size:12px;font-weight:800}

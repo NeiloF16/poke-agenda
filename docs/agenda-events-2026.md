@@ -31,7 +31,7 @@ Guides des rendez-vous récurrents :
 
 La rubrique des rendez-vous n'invente pas de quête journalière dans Rouge/Bleu/Jaune ; les jeux sans tâche liée à une vraie date disposent de leurs autres activités dans le glossaire.
 
-## Dates utiles à PKHeX
+## Dates et provenance des distributions
 
 - Afficher des dates de **début et de fin de distribution vérifiées**, et non une date reconstruite à partir de souvenirs.
 - Les dates de début/fin d'une campagne sont distinctes de la **validité d'un code** et d'une date d'obtention ou de rencontre inscrite en sauvegarde.
