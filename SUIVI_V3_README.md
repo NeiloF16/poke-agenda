@@ -1,51 +1,38 @@
-# Poké-Agenda V3 — Suivi des Pokédex, sauvegardes et objectifs
+# Poké-Agenda — Vitrine et suivi Pokémon
 
-## Ce qui fonctionne sans backend
+Poké-Agenda est un site statique public, accessible via GitHub Pages. Il sert de bibliothèque de guides illustrés et de vitrine des aventures Pokémon, en proposant un suivi de collection individuel, sans service social.
 
-- Une page \`suivi.html\` pour les **22 entrées de jeux principaux** (Pokémon GO est exclu du suivi).
-- Les images de bannière sont reprises du catalogue actuel.
-- Les Pokédex régionaux (et nationaux lorsqu'ils existent dans le jeu) sont fournis en français par les données CSV de PokéAPI.
-- X/Y : Kalos central, littoral, monts et total régional ; SWSH et EV : sections DLC ; Z-A : Illumis et extradimensionnel.
-- Icônes Pokémon chargées depuis le dépôt PokeAPI/sprites avec solution de repli.
-- Cases cochées par espèce, partagées entre le régional et le national **à l'intérieur de la même sauvegarde**.
-- Plusieurs sauvegardes et versions pour chaque jeu : par exemple une partie Rouge indépendante de Bleu.
-- Une jauge Pokédex et une jauge d'objectifs distinctes, plus des objectifs personnels ajoutables.
-- Sauvegarde locale dans localStorage ; exportation/importation JSON (sans affecter les anciennes données V2).
+## Fonctionnalités
 
-**Important :** les objectifs de jeu sont une sélection éditoriale à affiner avec les retours des joueurs. Le 100 % représente les cases de la checklist affichée, pas une définition canonique ou une certification officielle de « tout faire ». Les Pokédex nationaux n'existent plus en jeu pour certains titres modernes : le suivi ne doit pas en inventer.
+- `index.html` : calendrier, bibliothèque de 23 jeux/duos et 90 affiches historiques.
+- `suivi.html` : suivi de 22 entrées de jeux principaux (Pokémon GO reste seulement dans le calendrier).
+- Listes Pokédex régionales et nationales lorsqu'elles existent dans le jeu, noms français et icônes PokéAPI.
+- Recherche et cases « possédé » communes au Dex régional/national d'une même sauvegarde.
+- Plusieurs sauvegardes distinctes par version : Rouge et Bleu, par exemple, ne partagent pas leurs cases.
+- Progression indépendante pour le Pokédex et pour les objectifs d'histoire/après-jeu, ainsi que les objectifs personnels.
+- **Vitrine de sauvegardes** : aperçu des deux jauges par partie et export en page HTML statique, à partager volontairement.
+- Exportation et importation des données de suivi en JSON.
 
-## Publication et sécurité
+## Comment fonctionne la vitrine ?
 
-Les nouvelles pages utilisent GitHub Pages et ne nécessitent pas de serveur pour la partie locale.
-Ne jamais stocker de mots de passe dans du JavaScript, dans un dépôt GitHub ou dans localStorage.
+La vitrine intégrée à `suivi.html` résume toutes les parties enregistrées sur l'appareil courant. Le bouton **Exporter ma vitrine (HTML)** produit un fichier autonome avec les titres des jeux, le nom de chaque sauvegarde et les pourcentages de complétion. Ce document est en lecture seule et son contenu est figé à l'instant de l'export. Les illustrations y sont chargées depuis le site public.
 
-## Dimension sociale : seconde phase
+Le fichier HTML peut être envoyé directement aux amis ou hébergé séparément par son propriétaire. Aucun contenu des sauvegardes n'est publié automatiquement sur le Poké-Agenda.
 
-GitHub Pages ne fournit pas de comptes ni de base de données en écriture.
-Pour permettre **pseudo + mot de passe sans email obligatoire**, deux options :
+## Conservation de la progression
 
-1. **Clerk + Supabase** (hébergement géré). Configurer Clerk pour utiliser un identifiant de connexion de type username et le mot de passe, sans exiger email ou SMS si les paramètres du plan le permettent. Activer ensuite l'intégration de connexion tierce de Clerk dans Supabase. La base Supabase gère progression et abonnements, avec RLS.
-2. **PocketBase** (serveur privé). Une collection d'authentification peut rendre le champ email optionnel et utiliser un champ username unique comme identité de connexion. Cette option exige un serveur sécurisé et persistant à héberger et maintenir : GitHub Pages seul ne suffit pas.
+Le suivi et la bibliothèque stockent leurs coches, notes et favoris dans le stockage local de chaque navigateur. Les visiteurs conservent donc leurs propres données, et doivent exporter périodiquement une sauvegarde JSON : elles ne sont pas synchronisées entre plusieurs appareils. Le fichier HTML « vitrine » est une présentation, **pas une sauvegarde réimportable**.
 
-Le fichier \`backend/social-schema.sql\` propose un schéma RLS pour la première option. Il n'est **pas** exécuté automatiquement.
+## Limites et vérifications
 
-### Besoins à finaliser avant lancement des comptes
+La notion de « jeu à 100 % » repose sur les objectifs présentés dans la checklist éditoriale et les objectifs personnels ajoutés. Elle ne garantit pas une définition exhaustive et officielle de la complétion. Les Pokédex nationaux n'existent pas dans tous les jeux récents : seuls ceux qui correspondent au titre sont proposés.
 
-- Confirmation de la disponibilité d'un identifiant « username + password » seul dans l'instance de production.
-- Paramétrage d'une application d'authentification et d'un projet Supabase par l'administrateur.
-- Vue « Mon profil », pseudo unique, visibilité privée par défaut, recherche de pseudos, demande d'ami et acceptation.
-- Synchronisation des Pokémon possédés et des objectifs par utilisateur, gestion des conflits et reprise des sauvegardes locales existantes.
-- Test de sécurité des règles RLS avec deux comptes (dont un non autorisé), blocage des mots de passe faibles et tentatives répétées.
-- Suppression de compte et de données ; récupération de compte. **Sans email, le mot de passe perdu risque d'être irrécupérable** : prévoir des codes de secours ou un email facultatif.
-- Mentions de confidentialité et traitement des données requis pour les utilisateurs en France / UE.
-- Limites des offres gratuites : l'hébergement peut nécessiter une montée de gamme selon le trafic.
+La V3 reste une application statique. Aucun service d'authentification, aucune base de données partagée et aucune fonctionnalité d'amis n'est nécessaire à son fonctionnement.
 
-### Sources
+## Sources et droits
 
-- PokéAPI : https://github.com/PokeAPI/pokeapi
-- PokéAPI sprites : https://github.com/PokeAPI/sprites
-- Clerk : https://clerk.com/docs/guides/configure/auth-strategies/sign-up-sign-in-options
-- Intégration Supabase / Clerk : https://supabase.com/docs/guides/auth/third-party/clerk
-- PocketBase : https://pocketbase.io/docs/authentication/
+- Données Pokédex : https://github.com/PokeAPI/pokeapi
+- Sprites Pokémon : https://github.com/PokeAPI/sprites
+- Licence PokéAPI : `assets/tracker/POKEAPI-LICENSE.md`
 
-Pokémon, noms et images associés restent la propriété de leurs ayants droit. Réutiliser les images d'un dépôt de sprites n'accorde pas automatiquement une licence sur les personnages ou illustrations. Le site doit éviter de suggérer un partenariat officiel.
+Pokémon et les marques associées appartiennent à leurs ayants droit. Poké-Agenda est un projet de fans non officiel.
