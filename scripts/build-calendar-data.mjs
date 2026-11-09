@@ -34,7 +34,7 @@ const header = `/* Poké Agenda V4.1 — catalogue généré depuis catalogue.js
  * Le calendrier reste utilisable sans API externe ni réseau.
  */
 `;
-const output = header + "window.POKE_AGENDA_GAMES = " + JSON.stringify(games) + ";\\n";
+const output = header + "window.POKE_AGENDA_GAMES = " + JSON.stringify(games) + ";\n";
 if (process.argv.includes("--check")) {
   const current = await readFile(destination, "utf8");
   if (current !== output) {
