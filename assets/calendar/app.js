@@ -105,7 +105,7 @@ function datedEventCard(event) {
 }
 function archiveEventCard(record) {
   const id=record.games?.[0];
-  const link=ARCHIVE_SOURCES[record.source]?.url||'';
+  const link=record.directSource||ARCHIVE_SOURCES[record.source]?.url||'';
   return '<article class="live-event-card archive-item"><div class="live-game">'+
     esc((record.games||[]).map(id=>byId(id)?.name).filter(Boolean).join(' · '))+
     '</div><h3>'+esc(record.name)+'</h3><p>'+esc(record.detail)+'</p>'+
@@ -180,7 +180,7 @@ function eventDesk(){
     (unknown.length?'<div class="section-head" style="margin-top:32px"><div><h2>Événements sans fin annoncée</h2>'+
       '<p class="section-sub">Statut à vérifier en jeu : ils ne sont pas annoncés comme actifs sans contrôle.</p></div></div>'+
       '<div class="live-event-grid">'+unknown.map(e=>archiveEventCard({games:e.gameIds,name:e.title,detail:e.description,
-        period:'Sans date de fin confirmée',region:e.region,method:e.method,source:'updates'})).join('')+'</div>':'')+
+        period:'Sans date de fin confirmée',region:e.region,method:e.method,directSource:e.source})).join('')+'</div>':'')+
     '</section>'+pokebipNewsPanel(25);
 }
 function routineDayCard(entry) {
