@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08131b">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="description" content="Poké-Agenda : guide illustré des événements quotidiens, hebdomadaires et activités des jeux Pokémon.">
+<meta name="description" content="Poké Agenda : glossaire écrit des activités régulières, échanges, distributions et événements historiques de chaque jeu Pokémon.">
 <title>Poké-Agenda</title>
-<link rel="stylesheet" href="assets/calendar/calendar.css?v=4.2.0">
+<link rel="stylesheet" href="assets/calendar/calendar.css?v=glossaire-1">
 </head>
 <body>
 <!-- Inline symbols ensure the site works without an internet connection. -->
@@ -53,15 +53,10 @@
   <footer class="page-footer"><span>Poké-Agenda · Projet de fans non officiel, sans affiliation à Nintendo, Game Freak ou The Pokémon Company.</span><span>Illustration de Miku : <a href="https://x.com/ioruko" target="_blank" rel="noopener noreferrer">@ioruko</a></span><span>Progression conservée dans le navigateur · <a href="https://github.com/NeiloF16/poke-agenda/issues" target="_blank" rel="noopener noreferrer">Retours et suggestions</a></span></footer>
  </div></main>
 </div>
-<dialog id="reader" aria-label="Lecteur d’affiches"><div class="reader-wrap">
- <div class="reader-head"><div><p id="readerKicker"></p><h2 id="readerTitle"></h2></div><div class="reader-actions"><button class="small-btn" data-action="zoom"><span class="icon" style="width:15px;height:15px"><svg><use href="#i-zoom"/></svg></span> Agrandir</button><a class="small-btn" id="readerDownload" download><span class="icon" style="width:15px;height:15px"><svg><use href="#i-down"/></svg></span> PNG</a><button class="icon-btn" aria-label="Fermer" data-action="close-reader"><span class="icon"><svg><use href="#i-x"/></svg></span></button></div></div>
- <div class="reader-body"><div class="poster-stage"><button class="prevnext left" aria-label="Page précédente" data-action="prev">‹</button><img class="poster-img" id="posterImg" alt="Affiche du Poké-Agenda"><button class="prevnext right" aria-label="Page suivante" data-action="next">›</button></div><aside class="reader-panel"><div class="panel-tag" id="panelTag"></div><p class="panel-description" id="panelDesc"></p><h3 id="pageHeading">Pages de cette fiche</h3><div class="page-list" id="pageList"></div><div class="panel-controls"><button class="small-btn" id="readerChecked" data-action="mark"><span class="icon" style="width:15px;height:15px"><svg><use href="#i-check"/></svg></span> Fait aujourd’hui</button><button class="small-btn" id="readerFavorite" data-action="favorite-reader"><span class="icon" style="width:15px;height:15px"><svg><use href="#i-heart"/></svg></span> Favori</button></div><label class="note-label" for="gameNotes">Mes notes personnelles</label><textarea class="notes" id="gameNotes" placeholder="Ex. : Lokhlass récupéré, revenir vendredi…"></textarea><div class="notes-foot">Notes sauvegardées automatiquement sur ce navigateur.</div></aside></div>
- <div class="modal-footer"><span>← → pour changer de page · Échap pour fermer</span><span id="readerPageCounter"></span></div>
-</div></dialog>
-<dialog id="zoomDialog" aria-label="Affiche en grand"><button class="icon-btn zoom-close" data-action="close-zoom" aria-label="Fermer le zoom"><span class="icon"><svg><use href="#i-x"/></svg></span></button><div id="zoomTitle"></div><img id="zoomImg" alt="Affiche agrandie"></dialog>
 <input type="file" id="importInput" accept="application/json,.json" hidden>
 <script src="assets/calendar/games.js?v=4.1.0"></script>
 <script src="assets/tracker/game-rules.js?v=4.1.0"></script>
-<script src="assets/calendar/app.js?v=4.2.0"></script>
+<script src="assets/glossary/data.js?v=1"></script>
+<script src="assets/calendar/app.js?v=glossaire-1"></script>
 </body>
 </html>
