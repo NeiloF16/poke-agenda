@@ -21,4 +21,4 @@ jobs:
       - name: Vérifier les données générées du calendrier
         run: node scripts/build-calendar-data.mjs --check
       - name: Vérifier les jeux, règles, pages et scripts
-        run: node --test tests/architecture.test.mjs
+        run: node --test tests/*.test.mjs
