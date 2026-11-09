@@ -271,12 +271,18 @@
       metadata.user_name || metadata.preferred_username || metadata.name || "Dresseur") || "Dresseur";
     const fallbackName = String(metadata.full_name || metadata.global_name ||
       metadata.name || username).trim().slice(0,80) || username;
-    const displayName = String(discord?.global_name || discord?.username ||
-      existing?.display_name || fallbackName).trim().slice(0,80) || username;
+    // Le nom d'affichage public est distinct de l'identifiant @username.
+    // Un choix explicite dans Poké Agenda doit rester stable entre navigateurs
+    // et ne pas être écrasé par une reconnexion OAuth.
+    const preferredName = String(metadata.poke_agenda_display_name || "").trim().slice(0,80);
+    const displayName = String(preferredName || discord?.global_name ||
+      existing?.display_name || metadata.global_name || fallbackName ||
+      discord?.username || username).trim().slice(0,80) || username;
 
     // Sans nouvelles données Discord, conserver le profil précédent ; seul
     // un ancien suffixe #1234 peut justifier une normalisation en base.
-    if (!discord && existing && existing.username === username) {
+    if (!discord && existing && existing.username === username &&
+        existing.display_name === displayName) {
       profile = existing;
       return;
     }
@@ -301,6 +307,47 @@
       .eq("user_id",user.id).maybeSingle();
     if (readError) throw readError;
     profile = own;
+  }
+  async function editDisplayName() {
+    if (!isDiscord(user)) {
+      alert("Connecte-toi avec Discord pour modifier le nom de ton profil.");
+      return;
+    }
+    const current = profile?.display_name || user.user_metadata?.poke_agenda_display_name || "";
+    const value = prompt("Nom affiché sur ta vitrine Pokémon (différent de @username) :",current);
+    if (value === null) return;
+    const name = String(value).trim();
+    if (!name || name.length > 80) {
+      alert("Choisis un nom de 1 à 80 caractères.");
+      return;
+    }
+    try {
+      const c = await getClient();
+      // Préférence non sensible, conservée par Supabase Auth sur tous les appareils.
+      // Les règles d'accès aux sauvegardes reposent toujours sur auth.uid().
+      const {data:updated,error:updateError} = await c.auth.updateUser({
+        data:{poke_agenda_display_name:name}
+      });
+      if (updateError) throw updateError;
+      if (updated?.user) user=updated.user;
+      else user={...user,user_metadata:{...user.user_metadata,poke_agenda_display_name:name}};
+      const username = cleanDiscordUsername(profile?.username ||
+        user.user_metadata?.user_name || user.user_metadata?.name || "Dresseur") || "Dresseur";
+      const {error:profileError} = await c.rpc("upsert_poke_discord_profile",{
+        p_display_name:name,
+        p_username:username,
+        p_avatar_url:imgURL(profile?.avatar_url),
+        p_banner_url:imgURL(profile?.banner_url),
+        p_accent_color:profile?.accent_color || null
+      });
+      if (profileError) throw profileError;
+      profile={...profile,display_name:name,username};
+      status="✓ Nom d'affichage enregistré : "+name+". Ta vitrine publique est actualisée.";
+      notify();
+    } catch (e) {
+      status="Impossible d'enregistrer le nom : "+(e.message || e);
+      notify();
+    }
   }
   async function refreshDiscordProfile() {
     if (!user) return login();
@@ -407,7 +454,7 @@
       if (document.visibilityState === "visible" && dirty && !conflict) schedule();
     });
   }
-  window.PokeCloud = {init,login,refreshDiscordProfile,logout,copyLink,reloadFromCloud,queueSync,flush,
+  window.PokeCloud = {init,login,refreshDiscordProfile,editDisplayName,logout,copyLink,reloadFromCloud,queueSync,flush,
     statusInfo,viewerState,isEnabled:() => !readOnlyLegacy && !isPublic,
     isPublic,profileLink};
 })();
