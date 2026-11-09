@@ -14,13 +14,13 @@ create table if not exists public.poke_showcases (
   payload jsonb not null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  constraint valid_public_summary check (
+  constraint valid_public_summary check ((
     jsonb_typeof(payload) = 'object'
     and payload->>'v' = '1'
     and jsonb_typeof(payload->'rows') = 'array'
     and jsonb_array_length(payload->'rows') <= 100
     and octet_length(payload::text) <= 25000
-  )
+  ) is true)
 );
 
 create index if not exists poke_showcases_updated_idx on public.poke_showcases(updated_at);
