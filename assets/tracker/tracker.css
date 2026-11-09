@@ -6,3 +6,25 @@
 @media(max-width:900px){.showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.showcase-grid{grid-template-columns:1fr}.showcase-tile img{height:135px}}
 
 [hidden]{display:none!important}
+
+
+/* V4 — identité Discord et profil public. */
+.discord-button{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid #8792ff;border-radius:11px;padding:10px 15px;color:#fff;font:inherit;font-weight:800;background:#5865f2;cursor:pointer}
+.discord-button:hover{background:#6774ff}
+.discord-who{font-size:12px;font-weight:800;color:var(--mint)}
+.discord-profile{margin:18px 0;border:1px solid #415a6f;border-radius:22px;overflow:hidden;background:#172a38;box-shadow:var(--shadow)}
+.discord-banner{height:205px;background:linear-gradient(120deg,#253953,#5d52b6);position:relative;overflow:hidden}
+.discord-banner-image{width:100%;height:100%;object-fit:cover;display:block}
+.discord-profile-body{position:relative;padding:0 26px 23px;display:flex;align-items:end;gap:18px;flex-wrap:wrap}
+.discord-avatar{height:104px;width:104px;border:6px solid #172a38;border-radius:50%;object-fit:cover;background:#455b7b;flex:none;margin-top:-45px;z-index:1;position:relative}
+.discord-avatar-fallback{display:grid;place-items:center;font-size:38px;color:#e6f2ff}
+.discord-profile-names{padding-top:20px;flex:1;min-width:180px}
+.discord-profile-names h1{margin-bottom:4px}
+.discord-profile-names p{margin:0;overflow-wrap:anywhere}
+.discord-stats{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:#dce2f9;padding-bottom:6px}
+.discord-stats span{border:1px solid #435e72;border-radius:10px;background:#213747;padding:9px 12px}
+.discord-stats b{font-size:16px;color:var(--mint)}
+.discord-community{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;background:linear-gradient(120deg,#1c3044,#26314b)}
+.discord-community h2{margin:0 0 5px}
+.discord-community p{margin:0}
+@media(max-width:600px){.discord-banner{height:135px}.discord-profile-body{padding:0 16px 18px;gap:10px}.discord-avatar{height:82px;width:82px;margin-top:-38px}.discord-profile-names{padding-top:4px}.discord-stats{width:100%}.discord-who{max-width:120px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}}
