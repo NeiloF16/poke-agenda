@@ -28,3 +28,7 @@
 .discord-community h2{margin:0 0 5px}
 .discord-community p{margin:0}
 @media(max-width:600px){.discord-banner{height:135px}.discord-profile-body{padding:0 16px 18px;gap:10px}.discord-avatar{height:82px;width:82px;margin-top:-38px}.discord-profile-names{padding-top:4px}.discord-stats{width:100%}.discord-who{max-width:120px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}}
+
+/* Centrer les bannières et cartes de toutes les versions sans déformer l'image. */
+.game-tile img,.play-head img,.showcase-tile img,.discord-banner-image{object-position:center center}
+.game-tile img{background-color:#172c36}
