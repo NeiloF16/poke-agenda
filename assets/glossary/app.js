@@ -116,7 +116,7 @@ const days=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
         '<span>'+escaped(e.method)+'</span></div>'+
         (e.ot||e.tid?'<div class="archive-facts">'+(e.ot?'DO : '+escaped(e.ot)+' ':'')+
         (e.tid?' · ID : '+escaped(e.tid):'')+'</div>':'')+
-        (e.pkhexNote?'<p class="pkhex-warning">'+escaped(e.pkhexNote)+'</p>':'')+
+        (e.provenanceNote?'<p class="event-note">'+escaped(e.provenanceNote)+'</p>':'')+
         (urlOk(e.source)?'<a href="'+escaped(e.source)+'" target="_blank" rel="noopener noreferrer">Vérifier la fiche source ↗</a>':'')+
         '</article>';
     }).join("");
@@ -129,7 +129,7 @@ const days=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
       '<div class="kicker">FENÊTRES OFFICIELLES · FRANCE</div><h2>Distributions et événements datés</h2>'+
       '<p>Ces événements ont des dates vérifiées : les anciens restent dans les archives après leur expiration. Les événements dont la fin est inconnue sont séparés et jamais affichés comme actifs automatiquement.</p>'+
       '</div><div class="archive-record-grid">'+(list+uncertain||'<div class="empty">Aucun événement daté vérifié dans ce jeu pour cette recherche.</div>')+
-      '</div><p class="pkhex-warning">Pour PKHeX : une fenêtre de distribution vérifiée est un repère, pas une preuve de légalité. Les cartes miracles, DO/ID, format, version et provenance sont à contrôler indépendamment.</p></section>';
+      '</div><p class="event-note">Une période de distribution vérifiée indique uniquement quand le cadeau était proposé. Vérifie également les conditions officielles, la région, la version et les données du Dresseur.</p></section>';
   }
   function regularPanel(){
     const items=regular.filter(isVisible);
