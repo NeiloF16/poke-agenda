@@ -16,9 +16,23 @@
       viewer={loading:true,payload:null,updatedAt:null,error:null};
   try{const id=localStorage.getItem(OWNER_ID_KEY);if(validUuid(id))ownerId=id}catch{}
 
-  function getClient(){
+  let sdkPromise=null;
+  async function getClient(){
     if(!isConfigured())throw Error("Le projet Supabase n'est pas encore configuré.");
-    if(!window.supabase||typeof window.supabase.createClient!=="function")throw Error("Le module Supabase est indisponible. Réessaie lorsque tu es connecté.");
+    if(!window.supabase||typeof window.supabase.createClient!=="function"){
+      if(!sdkPromise){
+        sdkPromise=new Promise((resolve,reject)=>{
+          const script=document.createElement("script");
+          script.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+          script.async=true;
+          script.onload=resolve;
+          script.onerror=()=>reject(Error("Impossible de charger le module Supabase."));
+          document.head.appendChild(script);
+        }).catch(error=>{sdkPromise=null;throw error});
+      }
+      await sdkPromise;
+    }
+    if(!window.supabase||typeof window.supabase.createClient!=="function")throw Error("Le module Supabase est indisponible.");
     if(!client)client=window.supabase.createClient(CONFIG.url,CONFIG.publishableKey,{
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false},
       global:{headers:{"x-client-info":"poke-agenda-v3-vitrine"}}
@@ -63,7 +77,7 @@
     }catch{prompt("Copie le lien permanent de ta vitrine :",link)}
   }
   async function getSession(){
-    const c=getClient();
+    const c=await getClient();
     const {data,error}=await c.auth.getSession();
     if(error)throw error;
     return data?.session||null;
@@ -77,7 +91,7 @@
     if(!confirm("Publier les noms de tes sauvegardes et leurs pourcentages sur un lien public permanent ? Aucun détail de Pokémon, note ou donnée privée ne sera publié."))return;
     publishing=true;setStatus("Création de la vitrine…");
     try{
-      const c=getClient();
+      const c=await getClient();
       let session=await getSession();
       if(!session){
         const {data:auth,error}=await c.auth.signInAnonymously();
@@ -114,7 +128,7 @@
     sending=true;
     if(retryTimer){clearTimeout(retryTimer);retryTimer=null}
     try{
-      const c=getClient();
+      const c=await getClient();
       const session=await getSession();
       if(!session?.user?.id){
         setStatus("Session perdue : sauvegardes locales intactes, mais cette vitrine n'est plus modifiable. Utilise « Nouvelle vitrine ».");
@@ -155,7 +169,7 @@
     if(!confirm("Créer une nouvelle vitrine avec une nouvelle adresse ? L'ancienne restera consultable, mais ne sera plus mise à jour depuis ce navigateur si son accès est perdu."))return;
     try{localStorage.removeItem(OWNER_ID_KEY)}catch{}
     ownerId="";
-    try{const c=getClient();await c.auth.signOut()}catch{}
+    try{const c=await getClient();await c.auth.signOut()}catch{}
     setStatus("Nouvelle vitrine prête à créer.");
     api?.onOwnerChange?.();
     await publish();
@@ -165,7 +179,7 @@
     if(!confirm("Supprimer définitivement cette vitrine publique ? Le lien actuel ne fonctionnera plus. Tes sauvegardes locales et tes Pokédex resteront intacts."))return;
     publishing=true;setStatus("Suppression de la vitrine publique…");
     try{
-      const c=getClient();
+      const c=await getClient();
       const session=await getSession();
       if(!session?.user?.id)throw Error("La session d'origine est introuvable. Cette vitrine ne peut plus être supprimée depuis ce navigateur.");
       const result=await c.from("poke_showcases").delete().eq("id",ownerId).select("id").maybeSingle();
@@ -197,7 +211,7 @@
     }
     viewBusy=true;
     try{
-      const c=getClient();
+      const c=await getClient();
       const {data,error}=await c.rpc("get_poke_showcase",{p_showcase_id:id});
       if(error)throw error;
       const result=Array.isArray(data)?data[0]:null;
