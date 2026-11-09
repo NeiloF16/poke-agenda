@@ -10,12 +10,12 @@ window.POKE_GLOSSARY = {
     "calendar": "https://www.pokepedia.fr/Jours_de_la_semaine",
     "johto": "https://www.pokebip.com/page/jeux-video/pokemon-or-argent/evenements-quotidiens",
     "trades": "https://bulbapedia.bulbagarden.net/wiki/In-game_trade",
-    "events": "https://www.serebii.net/events/",
-    "wifi": "https://www.nintendo.com/fr-fr/News/2014/Fevrier/Fin-du-service-Connexion-Wi-Fi-Nintendo-pour-les-logiciels-Nintendo-DS-DSi-et-Wii-859922.html",
-    "ranch": "https://www.pokepedia.fr/My_Pok%C3%A9mon_Ranch",
-    "wishmkr": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Colosseum_Bonus_Disc",
-    "channel": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
-    "shinyDiancie": "https://www.serebii.net/events/shiny.shtml",
+    "events": "https://www.pokebip.com/page/jeux-video/evendex/accueil",
+    "wifi": "https://www.pokebip.com/page/jeux-video/evendex/event-moyens-de-distribution",
+    "ranch": "https://www.pokebip.com/page/jeux-video/evendex/event-my-pokemon-ranch",
+    "wishmkr": "https://www.pokebip.com/page/jeux-video/evendex/minidex-evenementiel/385-jirachi",
+    "channel": "https://www.pokebip.com/page/jeux-video/evendex/minidex-evenementiel/385-jirachi",
+    "shinyDiancie": "https://www.pokebip.com/page/jeux-video/evendex/minidex-evenementiel-chroma/719-diancie",
     "xy": "https://www.serebii.net/xy/dailyevent.shtml",
     "oras": "https://www.serebii.net/omegarubyalphasapphire/dailyevent.shtml",
     "platinum": "https://www.serebii.net/platinum/dailyevent.shtml",
@@ -113,7 +113,7 @@ window.POKE_GLOSSARY = {
         {
           "type": "distributions",
           "name": "Cadeaux Mew de l'époque Game Boy",
-          "description": "Les Mew reçus lors d'événements officiels sont des distributions historiques, pas des rencontres normalement déclenchées dans Jaune.",
+          "description": "Mew a bien été distribué officiellement sur Rouge, Bleu et Jaune, notamment en France lors de campagnes en 2000 et 2002. Cela reste une distribution historique et non une capture normale dans Jaune.",
           "when": "Historique",
           "source": "events",
           "scope": ""
@@ -463,7 +463,7 @@ window.POKE_GLOSSARY = {
         {
           "type": "distributions",
           "name": "Membre Carte, Lettre de Chen, autres distributions",
-          "description": "Darkrai et Shaymin ont dépendu d'objets événementiels officiels. La Flûte Azur n'a pas été distribuée officiellement dans Diamant/Perle originaux.",
+          "description": "Sur Diamant et Perle originaux, la Carte Membre et la Lettre de Chen n'ont pas été distribuées officiellement pour accéder à Darkrai et Shaymin : les distributions d'objets concernent Platine. La Flûte Azur n'a jamais été distribuée officiellement sur les jeux DS.",
           "when": "Historique",
           "source": "events",
           "scope": ""
@@ -1369,5 +1369,10 @@ window.POKE_GLOSSARY = {
         }
       ]
     }
+  },
+  "audit": {
+    "method": "Édition fondée sur une sélection de faits historiques avec sources prioritaires Pokébip. Les 153 notices d'origine ne constituent pas un relevé complet et toutes leurs affirmations n'ont pas été auditées individuellement.",
+    "reviewedAt": "2026-11-09",
+    "coverage": "partielle"
   }
 };
