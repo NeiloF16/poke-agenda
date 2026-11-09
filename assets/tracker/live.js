@@ -102,6 +102,7 @@
       ownerId=id;
       try{localStorage.setItem(OWNER_ID_KEY,id)}catch{}
       pending=false;lastSynced=new Date();
+      api?.onOwnerChange?.();
       setStatus("✓ Vitrine publiée et synchronisée. Les prochaines coches seront envoyées automatiquement.");
       await shareLink();
     }catch(e){setStatus("Erreur de publication : "+(e?.message||String(e)))}
@@ -156,7 +157,28 @@
     ownerId="";
     try{const c=getClient();await c.auth.signOut()}catch{}
     setStatus("Nouvelle vitrine prête à créer.");
+    api?.onOwnerChange?.();
     await publish();
+  }
+  async function unpublish(){
+    if(!ownerId)return;
+    if(!confirm("Supprimer définitivement cette vitrine publique ? Le lien actuel ne fonctionnera plus. Tes sauvegardes locales et tes Pokédex resteront intacts."))return;
+    publishing=true;setStatus("Suppression de la vitrine publique…");
+    try{
+      const c=getClient();
+      const session=await getSession();
+      if(!session?.user?.id)throw Error("La session d'origine est introuvable. Cette vitrine ne peut plus être supprimée depuis ce navigateur.");
+      const result=await c.from("poke_showcases").delete().eq("id",ownerId).select("id").maybeSingle();
+      if(result.error)throw result.error;
+      if(!result.data)throw Error("La vitrine ne peut plus être supprimée avec cette session.");
+      try{localStorage.removeItem(OWNER_ID_KEY)}catch{}
+      ownerId="";pending=false;
+      if(timer){clearTimeout(timer);timer=null}
+      if(retryTimer){clearTimeout(retryTimer);retryTimer=null}
+      setStatus("Vitrine supprimée. Ton suivi local est conservé.");
+      api?.onOwnerChange?.();
+    }catch(e){setStatus("Erreur de suppression : "+(e?.message||String(e)))}
+    finally{publishing=false;setStatus(status)}
   }
   // La lecture publique utilise une RPC ciblée : aucun SELECT de la table exposé.
   async function pullPublic(){
@@ -231,7 +253,7 @@
     if(document.visibilityState==="visible"){if(pending)sync();if(publicId())pullPublic()}
   });
   window.PokeLive={
-    init,publish,shareLink,resetIdentity,queueSync,
+    init,publish,shareLink,resetIdentity,unpublish,queueSync,
     isConfigured,statusInfo,publicId,viewerState:()=>viewer,
     formatDate,liveLink,pullPublic
   };
