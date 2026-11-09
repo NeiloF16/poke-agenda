@@ -125,7 +125,7 @@ function showcaseSection(){
   return '<section class="section" id="vitrine"><div class="section-title"><div><div class="eyebrow">VITRINE DE PROGRESSION</div><h2>Chaque aventure en un coup d’œil</h2><p class="muted">Tes sauvegardes, tes Pokédex et tes objectifs réunis sur un même tableau.</p></div><button class="green" id="copyShowcaseLink" data-action="share-showcase" '+(!rows.length?'disabled':'')+'>🔗 Copier le lien de ma vitrine</button></div><div class="showcase-grid">'+(showcaseCards(rows)||'<div class="empty">Choisis un jeu pour commencer ta première sauvegarde et remplir ta vitrine.</div>')+'</div><p class="hint">Le lien donne accès à un instantané en lecture seule (noms des parties et pourcentages), sans divulguer tes cases cochées ni tes notes. Il ne se met pas à jour automatiquement : recopie un nouveau lien après une progression.</p></section>';
 }
 function shareSnapshotURL(rows){
-  const stamp=new Date().toISOString().slice(0,10);
+  const stamp=new Date().toLocaleDateString("fr-FR");
   // Noms des sauvegardes + statistiques uniquement : ni notes, ni liste de Pokémon.
   const payload=[1,stamp,rows.map(r=>[r.id,String(r.save).slice(0,50),r.caught,r.goalPercent])];
   const bytes=new TextEncoder().encode(JSON.stringify(payload));
