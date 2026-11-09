@@ -1,0 +1,24 @@
+name: Vérifications Poké Agenda V4.1
+on:
+  push:
+    branches:
+      - refactor/v4.1-maintainable-assets
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  architecture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Vérifier les données générées du calendrier
+        run: node scripts/build-calendar-data.mjs --check
+      - name: Vérifier les jeux, règles, pages et scripts
+        run: node --test tests/architecture.test.mjs
