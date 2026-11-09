@@ -7,7 +7,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="description" content="Poké Agenda : glossaire écrit des activités régulières, échanges, distributions et événements historiques de chaque jeu Pokémon.">
 <title>Poké-Agenda</title>
-<link rel="stylesheet" href="assets/calendar/calendar.css?v=glossaire-1">
+<link rel="stylesheet" href="assets/calendar/calendar.css?v=events-1">
 </head>
 <body>
 <!-- Inline symbols ensure the site works without an internet connection. -->
@@ -38,6 +38,7 @@
   <button class="nav active" data-view="dashboard"><span class="icon"><svg><use href="#i-home"/></svg></span>Vue d’ensemble</button>
   <button class="nav" data-view="library"><span class="icon"><svg><use href="#i-book"/></svg></span>Bibliothèque <span class="nav-badge">23</span></button><a class="nav" href="suivi.html"><span class="icon"><svg><use href="#i-check"/></svg></span>Suivi Pokédex <span class="nav-badge">NOUVEAU</span></a>
   <button class="nav" data-view="calendar"><span class="icon"><svg><use href="#i-cal"/></svg></span>Calendrier</button>
+  <button class="nav" data-view="events"><span class="icon"><svg><use href="#i-star"/></svg></span>Événements & archives</button>
   <button class="nav" data-view="favorites"><span class="icon"><svg><use href="#i-heart"/></svg></span>Favoris <span class="nav-badge" id="favCount">0</span></button>
   <div class="nav-heading">Générations</div>
   <div id="genNav"></div>
@@ -57,6 +58,11 @@
 <script src="assets/calendar/games.js?v=4.1.0"></script>
 <script src="assets/tracker/game-rules.js?v=4.1.0"></script>
 <script src="assets/glossary/data.js?v=1"></script>
-<script src="assets/calendar/app.js?v=glossaire-1"></script>
+<script src="assets/glossary/distribution-archives.js?v=1"></script>
+<script src="assets/glossary/daily-weekly.js?v=1"></script>
+<script src="assets/calendar/timed-events.js?v=1"></script>
+<script src="assets/calendar/event-engine.js?v=1"></script>
+<script src="assets/calendar/news-watch.js?v=1"></script>
+<script src="assets/calendar/app.js?v=events-2"></script>
 </body>
 </html>

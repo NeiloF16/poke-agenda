@@ -50,3 +50,38 @@ dialog{padding:0;border:1px solid #47606a;border-radius:21px;background:#0e1b24;
 .hero{background-position:center center}
 .tracker-version-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .tracker-version-links .go-tracker{display:inline-flex;flex:1 1 auto;min-width:max-content;margin:0;text-align:center;justify-content:center}
+
+/* Événements français — échéances datées, archives et activités */
+.live-counter{display:inline-flex;padding:2px 9px;vertical-align:middle;border-radius:999px;background:#2b5947;color:#caff99;font-size:13px;font-weight:900}
+.live-event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:13px;margin-top:16px}
+.live-event-card{background:linear-gradient(155deg,#223b43,#182c36);border:1px solid #395963;border-radius:17px;padding:18px;display:flex;flex-direction:column;gap:9px;min-width:0;box-shadow:0 10px 22px #0002}
+.live-event-card h3{margin:0;font-size:17px;line-height:1.27;letter-spacing:-.02em;color:#f1f9f5}
+.live-event-card p{margin:0;font-size:13px;line-height:1.6;color:#c2dadd;flex:1}
+.live-game{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#a8e7d8;font-weight:780}
+.live-event-top,.live-event-bottom{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.live-event-bottom{margin-top:auto;border-top:1px solid #41616a;padding-top:12px;font-size:12px}
+.live-event-bottom a{color:#baff91;font-weight:750;text-decoration:none}
+.live-event-bottom a:hover{text-decoration:underline}
+.live-event-period{font-size:12px;line-height:1.6;color:#a6c2c6}
+.live-event-period strong{color:#edf6e7}
+.live-status{font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid #608875;background:#275744;color:#bdffb4;font-weight:900}
+.live-status.past{color:#c9d4db;background:#32424d;border-color:#586e79}
+.live-status.upcoming{color:#fbe3aa;background:#66502b;border-color:#9a7a40}
+.live-kind{font-size:11px;color:#b7cfd5}
+.live-code{background:#0c242b;border:1px solid #4d7f6d;border-radius:8px;color:#c2ffbc;padding:4px 8px;font-size:12px;font-weight:850}
+.live-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:17px 0 10px}
+.live-disclaimer{padding:14px;border-left:3px solid #eac781;background:#263943;color:#d1e3dc;border-radius:0 10px 10px 0;font-size:12px;margin:18px 0;line-height:1.7}
+.calendar-game-picker{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0 10px}
+.calendar-game-picker label{font-weight:800;color:#c5ecdc}
+.calendar-game-picker select{background:#18323c;border:1px solid #3a6266;color:#eef9ed;padding:10px 13px;border-radius:10px;min-width:210px;max-width:100%}
+.archive-item{background:linear-gradient(155deg,#23343b,#263037)}
+@media(max-width:600px){.live-event-grid{grid-template-columns:1fr}.live-event-card{padding:15px}.calendar-game-picker select{width:100%}}
+
+/* Veille RSS en complément des distributions dont les dates sont vérifiées. */
+.news-list{display:grid;gap:7px;margin:12px 0}
+.news-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;background:#1b3540;border:1px solid #375864;border-radius:11px;text-decoration:none;color:#e9f7f3;padding:12px 14px;font-size:13px}
+.news-row:hover{border-color:#9dea9f;background:#244342}
+.news-row-date{font-size:11px;color:#a1bfc5;white-space:nowrap}
+.news-row strong{font-weight:750;overflow-wrap:anywhere}
+.news-row>span:last-child{color:#b8f792;font-size:17px}
+@media(max-width:580px){.news-row{grid-template-columns:1fr auto}.news-row-date{grid-column:1/-1}.news-row>strong{grid-column:1}}
