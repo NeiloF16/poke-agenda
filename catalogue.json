@@ -37,7 +37,7 @@
     "gen": 2,
     "region": "Johto",
     "lot": 1,
-    "subtitle": "Le temps entre en jeu",
+    "subtitle": "L'aventure à Johto",
     "color": "#e9b36f",
     "pages": [
       {
@@ -57,7 +57,7 @@
     "gen": 2,
     "region": "Johto",
     "lot": 1,
-    "subtitle": "Tous les secrets de Johto",
+    "subtitle": "Les secrets de Suicune",
     "color": "#b9a5ff",
     "pages": [
       {
@@ -189,7 +189,7 @@
     "gen": 4,
     "region": "Johto",
     "lot": 3,
-    "subtitle": "Le Pokématos à l’honneur",
+    "subtitle": "Le retour à Johto",
     "color": "#e8b06d",
     "pages": [
       {
@@ -293,7 +293,7 @@
     "gen": 6,
     "region": "Kalos",
     "lot": 5,
-    "subtitle": "Les secrets d’Illumis",
+    "subtitle": "Les secrets de la méga-évolution",
     "color": "#87b5ff",
     "pages": [
       {
@@ -397,7 +397,7 @@
     "gen": 7,
     "region": "Alola",
     "lot": 6,
-    "subtitle": "L’aventure au maximum",
+    "subtitle": "Alola en Ultra",
     "color": "#eda5c7",
     "pages": [
       {
@@ -489,7 +489,7 @@
     "gen": 8,
     "region": "Sinnoh",
     "lot": 7,
-    "subtitle": "Sinnoh, nouvelle génération",
+    "subtitle": "Sinnoh en chibi",
     "color": "#c4aafa",
     "pages": [
       {
@@ -521,7 +521,7 @@
     "gen": 8,
     "region": "Hisui",
     "lot": 7,
-    "subtitle": "Exploration à ton rythme",
+    "subtitle": "Le passé de Sinnoh",
     "color": "#eeb577",
     "pages": [
       {
@@ -545,7 +545,7 @@
     "gen": 9,
     "region": "Paldea",
     "lot": 8,
-    "subtitle": "Raids, apparitions et collection",
+    "subtitle": "Raids et collection",
     "color": "#f7aa80",
     "pages": [
       {
@@ -607,7 +607,7 @@
     "id": 23,
     "name": "Pokémon GO",
     "gen": 9,
-    "region": "Monde réel",
+    "region": "L'aventure réel",
     "lot": 8,
     "subtitle": "Le monde entier à explorer",
     "color": "#96d9e6",
