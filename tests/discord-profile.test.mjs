@@ -23,7 +23,7 @@ async function boot({providerToken,discord,displayName="Neilo",username="flyneil
     auth:{
       getSession:async()=>({data:{session:{user,provider_token:providerToken}},error:null}),
       updateUser:async({data})=>{
-        user.user_metadata={...user.user_metadata,...data};
+        Object.assign(user.user_metadata,data);
         return {data:{user},error:null};
       }
     },
