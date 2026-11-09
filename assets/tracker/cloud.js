@@ -230,8 +230,9 @@
       setLocal(OWNER_KEY,user.id); setLocal(VERSION_KEY,String(version)); delLocal(DIRTY_KEY);
     } else {
       // Pas de base cloud : l'utilisateur choisit explicitement une importation locale.
-      const migrate = hasProgress(local) && priorOwner !== user.id &&
-        confirm("Tu as une progression locale. L'importer dans ton nouveau compte Discord ?\n\nAnnuler = commencer une collection vide (un exemplaire local sera conservé).");
+      const recoverPending = pending?.userId === user.id && priorOwner === user.id && validStore(local);
+      const migrate = recoverPending || (hasProgress(local) && priorOwner !== user.id &&
+        confirm("Tu as une progression locale. L'importer dans ton nouveau compte Discord ?\n\nAnnuler = commencer une collection vide (un exemplaire local sera conservé)."));
       const seed = migrate ? local : blank();
       if (!migrate) archiveLocal(local);
       await createCollection(seed);
@@ -282,8 +283,10 @@
       if (!conflict) {
         try { await syncDiscordProfile(session); }
         catch(e) { status = "Collection accessible ; profil Discord à compléter : " + (e.message || e); }
-        try { await updatePublicProgress(); }
-        catch(e) { status = "Collection accessible ; vitrine à initialiser : " + (e.message || e); }
+        if (!dirty) {
+          try { await updatePublicProgress(); }
+          catch(e) { status = "Collection accessible ; vitrine à initialiser : " + (e.message || e); }
+        }
       }
       if (!conflict && !dirty && !status.includes("à compléter") && !status.includes("à initialiser"))
         status = "✓ Connecté à Discord : progression sauvegardée dans Supabase.";
@@ -294,6 +297,14 @@
   }
   async function logout() {
     if (!user) return;
+    if (!ready && !conflict) {
+      alert("Le cloud n'est pas prêt. Exporte ton JSON avant de te déconnecter pour ne rien perdre.");
+      return;
+    }
+    if (conflict) {
+      alert("Conflit entre appareils : exporte ton JSON et résous le conflit avant de te déconnecter.");
+      return;
+    }
     clearTimeout(timer);
     if (dirty && !(await flush())) {
       alert("La synchronisation a échoué. Exporte ton JSON avant de te déconnecter.");
