@@ -17,7 +17,7 @@ const src = {
   cloud:read("assets/tracker/cloud.js")
 };
 
-test("la bibliothèque affiche les 23 jeux et 90 guides du catalogue canonique",()=>{
+test("le catalogue conserve les 23 jeux et 90 anciennes illustrations en archive",()=>{
   const json=JSON.parse(src.catalogue);
   const context={window:{}};
   runInNewContext(src.games,context);
@@ -36,7 +36,9 @@ test("le HTML sépare présentation, données et logique sans perturber leur ord
   assert.ok(css>0 && games>css && app>games);
   assert.match(src.css,/url\('\.\.\/covers\/hero\.webp'\)/);
   assert.ok(src.index.includes('id="app"'));
-  assert.ok(src.index.includes('id="reader"'));
+  assert.ok(!src.index.includes('id="reader"'));
+  assert.ok(src.index.includes('glossary/data.js'));
+  assert.ok(src.index.includes('calendar/app.js'));
 });
 
 test("les règles des 22 jeux sont séparées de la gestion des sauvegardes",()=>{
