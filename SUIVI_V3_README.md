@@ -27,7 +27,7 @@ Le suivi et la bibliothèque stockent leurs coches, notes et favoris dans le sto
 
 La notion de « jeu à 100 % » repose sur les objectifs présentés dans la checklist éditoriale et les objectifs personnels ajoutés. Elle ne garantit pas une définition exhaustive et officielle de la complétion. Les Pokédex nationaux n'existent pas dans tous les jeux récents : seuls ceux qui correspondent au titre sont proposés.
 
-La V3 reste une application statique. Aucun service d'authentification, aucune base de données partagée et aucune fonctionnalité d'amis n'est nécessaire à son fonctionnement.
+La V3 reste une application statique : les données de progression sont conservées par chaque navigateur, sans service externe.
 
 ## Sources et droits
 
