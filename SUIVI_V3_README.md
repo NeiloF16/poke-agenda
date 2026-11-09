@@ -10,18 +10,24 @@ Poké-Agenda est un site statique public, accessible via GitHub Pages. Il sert d
 - Recherche et cases « possédé » communes au Dex régional/national d'une même sauvegarde.
 - Plusieurs sauvegardes distinctes par version : Rouge et Bleu, par exemple, ne partagent pas leurs cases.
 - Progression indépendante pour le Pokédex et pour les objectifs d'histoire/après-jeu, ainsi que les objectifs personnels.
-- **Vitrine de sauvegardes** : aperçu des deux jauges par partie et export en page HTML statique, à partager volontairement.
+- **Vitrine de sauvegardes** : aperçu des deux jauges par partie et liens partageables directement sur le site.
 - Exportation et importation des données de suivi en JSON.
 
-## Comment fonctionne la vitrine ?
+## Comment fonctionne le partage de la vitrine ?
 
-La vitrine intégrée à `suivi.html` résume toutes les parties enregistrées sur l'appareil courant. Le bouton **Exporter ma vitrine (HTML)** produit un fichier autonome avec les titres des jeux, le nom de chaque sauvegarde et les pourcentages de complétion. Ce document est en lecture seule et son contenu est figé à l'instant de l'export. Les illustrations y sont chargées depuis le site public.
+Le bouton **« Copier le lien de ma vitrine »** produit un lien `suivi.html#v1=...`. Les données sont codées directement dans la partie après `#` : GitHub Pages ne reçoit donc pas la progression sous forme d'une sauvegarde serveur.
 
-Le fichier HTML peut être envoyé directement aux amis ou hébergé séparément par son propriétaire. Aucun contenu des sauvegardes n'est publié automatiquement sur le Poké-Agenda.
+- Le lien récapitule uniquement le jeu, le nom de chaque sauvegarde, le nombre d'espèces cochées au Pokédex régional et le pourcentage d'objectifs accomplis.
+- Ni les notes personnelles, ni les listes détaillées des Pokémon cochés, ni les données d'import/export ne sont incluses.
+- Le visiteur voit une **vitrine en lecture seule**, avec les bannières existantes et les jauges.
+- Le lien est un **instantané**, pas une progression synchronisée. Générer un nouveau lien après avoir coché des événements.
+- Il ne dépend pas d'un compte. Il ne nécessite pas de fichier HTML à envoyer.
+- En cas de très nombreuses sauvegardes, la longueur du lien peut dépasser les limites de certains services de messagerie ; le bouton **« Lien de cette partie »** fournit alors une version plus courte.
+- Toute personne recevant le lien peut lire les informations résumées qui y figurent : ne renseignez pas d'informations sensibles dans les noms des sauvegardes.
 
 ## Conservation de la progression
 
-Le suivi et la bibliothèque stockent leurs coches, notes et favoris dans le stockage local de chaque navigateur. Les visiteurs conservent donc leurs propres données, et doivent exporter périodiquement une sauvegarde JSON : elles ne sont pas synchronisées entre plusieurs appareils. Le fichier HTML « vitrine » est une présentation, **pas une sauvegarde réimportable**.
+Le suivi et la bibliothèque stockent leurs coches, notes et favoris dans le stockage local de chaque navigateur. Les visiteurs conservent donc leurs propres données, et doivent exporter périodiquement une sauvegarde JSON : elles ne sont pas synchronisées entre plusieurs appareils. Le lien de partage est une présentation, **pas une sauvegarde réimportable**.
 
 ## Limites et vérifications
 
