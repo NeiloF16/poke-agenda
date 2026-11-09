@@ -9,7 +9,7 @@ Poké-Agenda est un site statique public, accessible via GitHub Pages. Il sert d
 - Listes Pokédex régionales et nationales lorsqu'elles existent dans le jeu, noms français et icônes PokéAPI.
 - Recherche et cases « possédé » communes au Dex régional/national d'une même sauvegarde.
 - Plusieurs sauvegardes distinctes par version : Rouge et Bleu, par exemple, ne partagent pas leurs cases.
-- Progression indépendante pour le Pokédex et pour les objectifs d'histoire/après-jeu, ainsi que les objectifs personnels.
+- Progression indépendante pour le Pokédex et pour les objectifs d'histoire/Post Game, ainsi que les objectifs personnels.
 - **Vitrine de sauvegardes** : aperçu des deux jauges par partie et liens partageables directement sur le site.
 - Exportation et importation des données de suivi en JSON.
 
