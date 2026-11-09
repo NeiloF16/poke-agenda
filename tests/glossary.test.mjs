@@ -63,7 +63,7 @@ function renderGame(id){
   const dom=new Map();
   const storage=new Map([
     ["poke-v2-favorites",JSON.stringify([14])],
-    ["poke-v2-notes",JSON.stringify({"14":"Jirachi dans la boîte"}))]
+    ["poke-v2-notes",JSON.stringify({"14":"Jirachi dans la boîte"})]
   ]);
   function element(id){
     if(!dom.has(id))dom.set(id,{id,innerHTML:"",value:"",textContent:"",
