@@ -67,7 +67,16 @@ function goals(){const out=[];for(const [group,arr]of Object.entries(TASKS[gameI
 function doneCount(s){const all=goals().concat((s.custom||[]).map(x=>({id:x.id,title:x.title,group:"custom"})));const yes=all.filter(t=>!!s.done[t.id]).length;return{yes,total:all.length,percent:all.length?Math.round(100*yes/all.length):0}}
 function owned(s){return new Set((s.owned||[]).map(Number).filter(x=>x>0&&x<=DATABASE.names.length))}
 function nameOf(id){return DATABASE.names[id-1]||"#"+id}
-function coverOf(id){return gameIndex.find(g=>g.id===id)?.cover||"assets/covers/"+String(id).padStart(2,"0")+".webp"}
+// Une image commune par duo dans la bibliothèque, une image par version dans le suivi.
+function coverOf(id,version){
+  const grouped=gameIndex.find(g=>g.id===id)?.cover||
+    "assets/covers/"+String(id).padStart(2,"0")+".webp";
+  if(!DEX_DEFS[id]?.versions.includes(version))return grouped;
+  const slug=String(version).normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g,"-")
+    .replace(/^-|-$/g,"");
+  return "assets/covers/versions/"+String(id).padStart(2,"0")+"-"+slug+".webp";
+}
 function gameName(id){return gameIndex.find(g=>g.id===id)?.name || DEX_DEFS[id]?.versions.join(" / ")||"Jeu Pokémon"}
 function gameTile(id,version){
   const arr=slotsForVersion(id,version);
@@ -79,7 +88,7 @@ function gameTile(id,version){
   const dexPct=ids.length?Math.round(ids.filter(i=>own.has(i)).length*100/ids.length):0;
   const selected=gameId===id&&selectedVersion===version;
   return '<button class="game-tile '+(selected?'selected':'')+'" data-game="'+id+
-    '" data-version="'+safe(version)+'"><img src="'+safe(coverOf(id))+'" loading="lazy" alt="">'+
+    '" data-version="'+safe(version)+'"><img src="'+safe(coverOf(id,version))+'" loading="lazy" alt="">'+
     '<strong>'+safe(version)+'</strong><small>GEN '+(gameIndex.find(g=>g.id===id)?.gen||"")+
     ' · '+saved+' partie'+(saved>1?'s':'')+' · Dex '+dexPct+'% · Objectifs '+c.percent+'%</small></button>';
 }
@@ -111,7 +120,7 @@ function monHTML(id,pos,yes){const name=nameOf(id);const sprite='https://raw.git
 function dexBody(s){const d=activeDex();const seen=owned(s),items=d.ids.map((id,i)=>({id,i})).filter(x=>{if(filter==="owned"&&!seen.has(x.id))return false;if(filter==="missing"&&seen.has(x.id))return false;return !search||norm(nameOf(x.id)).includes(norm(search))||String(x.id).includes(search.replace("#",""))});const shown=items.slice(0,limit);let html='<div class="dex-controls"><input type="search" id="speciesSearch" value="'+safe(search)+'" placeholder="Chercher un Pokémon, nom ou numéro…" aria-label="Rechercher un Pokémon"><select id="speciesFilter" aria-label="Filtre de collection"><option value="all" '+(filter==="all"?"selected":"")+'>Tous</option><option value="missing" '+(filter==="missing"?"selected":"")+'>Manquants</option><option value="owned" '+(filter==="owned"?"selected":"")+'>Possédés</option></select><span class="pill">'+d.ids.filter(x=>seen.has(x)).length+' / '+d.ids.length+' possédés</span></div>';html+=items.length?'<div class="dex-list">'+shown.map(x=>monHTML(x.id,x.i,seen.has(x.id))).join("")+'</div>':'<div class="empty">Aucun Pokémon ne correspond à ce filtre.</div>';if(items.length>shown.length)html+='<div class="row-between" style="margin-top:15px"><span class="muted">'+shown.length+' / '+items.length+' affichés</span><button class="soft" data-action="more">Afficher 80 Pokémon supplémentaires</button></div>';if(gameId===22&&dexIndex===0)html+='<p class="hint">Illumis comporte 232 entrées ; Diancie et Mewtwo ne sont pas exigés pour la récompense de complétion du Pokédex.</p>';return html}
 function dexSection(s){const dx=dexes();return '<section class="section"><div class="section-title"><h2>Pokédex · Pokémon possédés</h2><span class="micro">Une case par espèce et par sauvegarde</span></div><div class="tabs">'+dx.map((d,i)=>'<button class="tab '+(dexIndex===i?"active":"")+'" data-dex="'+i+'">'+safe(d.label)+'</button>').join("")+'</div><div id="dexBody">'+dexBody(s)+'</div><p class="hint">Les cases sont partagées entre les Dex d’une même sauvegarde. Une espèce cochée dans le régional est automatiquement comptée dans le national.</p></section>'}
 function goalSection(s){const tasks=goals().concat((s.custom||[]).map(x=>({id:x.id,title:x.title,group:"custom"})));const list=tasks.map(t=>'<label class="task '+(s.done[t.id]?"done":"")+'"><input data-task="'+safe(t.id)+'" type="checkbox" '+(s.done[t.id]?"checked":"")+'><span class="task-text"><strong>'+safe(t.title)+'</strong><small>'+({"story":"Histoire","extra":"Post Game et défis","custom":"Objectif personnel"}[t.group]||"Objectif")+'</small></span>'+(t.group==="custom"?'<button type="button" class="delete-task" data-delete-task="'+safe(t.id)+'" aria-label="Supprimer cet objectif">×</button>':"")+'</label>').join("");return '<section class="section"><div class="section-title"><h2>Objectifs du jeu</h2><span class="pill">'+doneCount(s).yes+' / '+doneCount(s).total+' réussis</span></div><div class="note"><strong>Deux jauges différentes :</strong> les Pokémon possédés remplissent le Pokédex ; ces cases suivent ton histoire, le Post Game et les défis. La notion de 100 % correspond ici à cette checklist personnalisable, pas à une certification officielle du jeu.</div><div class="tasks" id="taskList">'+list+'</div><form class="taskform" id="addGoalForm"><input id="newGoal" required maxlength="100" placeholder="Ajouter un objectif personnel…"><button class="green" type="submit">+ Objectif</button></form></section>'}
-function mainHTML(){const s=getSlot(),name=selectedVersion,dx=dexes();return '<section id="current-game"><div class="play-head"><img src="'+safe(coverOf(gameId))+'" alt=""><div><div class="eyebrow">GEN '+(gameIndex.find(x=>x.id===gameId)?.gen||"")+' · Suivi de sauvegarde</div><h1>'+safe(name)+'</h1><span class="muted">Chaque version possède ses propres parties, Pokémon cochés et objectifs.</span></div></div><section class="section"><div class="section-title"><h2>Mes sauvegardes</h2><span class="pill">'+(window.PokeCloud?.statusInfo?.().user?"Discord · cloud privé":"Stockage local · non synchronisé")+'</span></div>'+saveBar(s)+'</section><section class="section"><div class="section-title"><h2>Tableau de bord</h2><div class="actions"><button class="soft" data-action="share-current">🔗 Lien de cette partie</button><button class="soft" data-action="export">Exporter mes données</button></div></div><div id="progressArea">'+progressArea(s)+'</div></section>'+dexSection(s)+goalSection(s)+'</section>'}
+function mainHTML(){const s=getSlot(),name=selectedVersion,dx=dexes();return '<section id="current-game"><div class="play-head"><img src="'+safe(coverOf(gameId,selectedVersion))+'" alt=""><div><div class="eyebrow">GEN '+(gameIndex.find(x=>x.id===gameId)?.gen||"")+' · Suivi de sauvegarde</div><h1>'+safe(name)+'</h1><span class="muted">Chaque version possède ses propres parties, Pokémon cochés et objectifs.</span></div></div><section class="section"><div class="section-title"><h2>Mes sauvegardes</h2><span class="pill">'+(window.PokeCloud?.statusInfo?.().user?"Discord · cloud privé":"Stockage local · non synchronisé")+'</span></div>'+saveBar(s)+'</section><section class="section"><div class="section-title"><h2>Tableau de bord</h2><div class="actions"><button class="soft" data-action="share-current">🔗 Lien de cette partie</button><button class="soft" data-action="export">Exporter mes données</button></div></div><div id="progressArea">'+progressArea(s)+'</div></section>'+dexSection(s)+goalSection(s)+'</section>'}
 function overview(){const saves=Object.values(store.games).flatMap(x=>Array.isArray(x)?x:[]);const pokemon=saves.reduce((n,s)=>n+(s.owned?.length||0),0);const finished=saves.reduce((n,s)=>n+Object.values(s.done||{}).filter(Boolean).length,0);return '<section class="section"><div class="section-title"><h2>Vue d’ensemble des sauvegardes</h2><span class="micro">'+(window.PokeCloud?.statusInfo?.().user?"Synchronisé avec ton compte Discord":"Compteurs de cet appareil")+'</span></div><div class="progress-grid"><div class="progress-card"><small>Sauvegardes créées</small><strong>'+saves.length+'</strong><p>Versions et parties suivies</p></div><div class="progress-card"><small>Pokémon cochés</small><strong>'+pokemon+'</strong><p>Au total sur tes sauvegardes</p></div><div class="progress-card"><small>Objectifs cochés</small><strong>'+finished+'</strong><p>Histoire, défis et objectifs personnels</p></div></div></section>'}
 function render(){if(IS_PROFILE_VIEW){document.getElementById("app").innerHTML=profileShowcasePage();return}if(IS_LIVE_VIEW){document.getElementById("app").innerHTML=liveShowcasePage();return}if(IS_SHARED_VIEW){document.getElementById("app").innerHTML=sharedShowcasePage();return}const details=mainHTML();document.getElementById("app").innerHTML='<div id="globalOverview">'+overview()+'</div><div id="showcaseArea">'+showcaseSection()+'</div><div id="gameGallery">'+gameGallery()+'</div>'+details}
 function showcaseRows(){
@@ -131,7 +140,7 @@ function showcaseRows(){
         version:DEX_DEFS[id].versions.includes(s.version)?s.version:"",
         saveKey:s.id,
         save:String(s.name||s.version||"Partie"),
-        cover:coverOf(id),
+        cover:coverOf(id,s.version),
         caught,total,
         dexPercent:total?Math.round(caught*100/total):0,
         goalPercent:objective.percent
@@ -207,7 +216,7 @@ function parseSharedShowcase(){
       if(caught<0||caught>total)throw Error("Comptage invalide");
       if(version!==undefined&&(typeof version!=="string"||
    (version!==""&&!DEX_DEFS[id].versions.includes(version))))throw Error("Version invalide");
-return {id,game:version||gameName(id),save,cover:coverOf(id),caught,total,
+return {id,game:version||gameName(id),save,cover:coverOf(id,version),caught,total,
   dexPercent:total?Math.round(caught/total*100):0,goalPercent};
     });
     return {date,rows};
@@ -223,7 +232,7 @@ function liveShowcasePage(){
   const rows=(data?.rows||[]).map(entry=>{
     const [id,save,caught,goalPercent,version]=entry;
     const total=fullIds(DEX_DEFS[id].dex[0]).length;
-    return {id,game:DEX_DEFS[id].versions.includes(version)?version:gameName(id),save,cover:coverOf(id),caught,total,
+    return {id,game:DEX_DEFS[id].versions.includes(version)?version:gameName(id),save,cover:coverOf(id,version),caught,total,
       dexPercent:total?Math.round(caught/total*100):0,goalPercent};
   });
   return '<section class="intro live-vitrine"><div class="eyebrow">VITRINE POKÉ-AGENDA · LIVE</div><h1>Une collection Pokémon qui évolue !</h1><p>Progression actualisée automatiquement toutes les 45 secondes. Dernière mise à jour : <span id="liveRefreshTime">'+safe(window.PokeLive?.formatDate?.(state.updatedAt)||'inconnue')+'</span>.</p></section><section class="section"><div class="section-title"><h2>Pokédex et objectifs</h2><a class="green" href="suivi.html">Créer mon suivi →</a></div><div class="showcase-grid">'+(showcaseCards(rows)||'<div class="empty">Aucune sauvegarde à afficher pour le moment.</div>')+'</div><p class="hint">Cette vitrine est publiée par son propriétaire et reste en lecture seule. Les cases personnelles des visiteurs ne sont pas modifiées.</p></section>';
@@ -249,7 +258,7 @@ function profileShowcasePage(){
     if(caught<0||caught>total||goals<0||goals>100)return null;
     if(version!==undefined&&(typeof version!=="string"||
        (version!==""&&!DEX_DEFS[id].versions.includes(version))))return null;
-    return {id,save,game:version||gameName(id),cover:coverOf(id),caught,total,
+    return {id,save,game:version||gameName(id),cover:coverOf(id,version),caught,total,
       dexPercent:total?Math.round(caught/total*100):0,goalPercent:goals};
   }).filter(Boolean);
   const avatarHTML=avatar?'<img class="discord-avatar" src="'+avatar+'" srcset="'+cdnSize(img(p.avatar_url),128)+' 128w, '+avatar+' 256w, '+cdnSize(img(p.avatar_url),512)+' 512w" sizes="104px" alt="Avatar Discord" decoding="async" referrerpolicy="no-referrer">':'<span class="discord-avatar discord-avatar-fallback">★</span>';
