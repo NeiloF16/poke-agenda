@@ -32,3 +32,8 @@
 /* Centrer les bannières et cartes de toutes les versions sans déformer l'image. */
 .game-tile img,.play-head img,.showcase-tile img,.discord-banner-image{object-position:center center}
 .game-tile img{background-color:#172c36}
+
+/* Complétion rapide du Pokédex sélectionné, par partie et par version. */
+.dex-complete{font-size:12px;white-space:normal;min-height:39px}
+.dex-complete[disabled]{cursor:default;opacity:.72;background:#29473b;color:#c2ebce;border-color:#4a735e}
+@media(max-width:600px){.dex-controls .dex-complete{width:100%}}
