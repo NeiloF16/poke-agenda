@@ -7,7 +7,7 @@
 <meta name="description" content="Poké-Agenda : suivez le Pokédex régional et national, les Pokémon possédés et les objectifs de chaque jeu et chaque sauvegarde.">
 <title>Vitrine Pokémon à partager | Poké-Agenda</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/tracker/tracker.css?v=share-1">
+<link rel="stylesheet" href="assets/tracker/tracker.css?v=live-1">
 </head>
 <body>
 <main class="shell">
@@ -28,10 +28,13 @@
 <footer class="foot">
   <p>Poké-Agenda est un projet de fans non officiel. Les noms, personnages et illustrations Pokémon appartiennent à leurs ayants droit.</p>
   <p>Les informations Pokédex proviennent de <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a>, leurs illustrations de <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokéAPI Sprites</a>. <a href="https://github.com/NeiloF16/poke-agenda/issues" target="_blank" rel="noopener noreferrer">Signaler une erreur</a>.</p>
-  <p>La progression reste dans ce navigateur. Exporte régulièrement tes données au format JSON pour les conserver. Les liens de vitrine partagent uniquement un instantané des noms et des statistiques, sans synchronisation ni liste de Pokémon cochés.</p>
+  <p>La progression reste dans ce navigateur. Exporte régulièrement tes données au format JSON pour les conserver. La vitrine permanente conservera le même lien et synchronisera automatiquement ses statistiques après activation. Les sauvegardes complètes, notes et cases individuelles restent privées dans ton navigateur.</p>
 </footer>
 </main>
 <script src="assets/tracker/dex-data.js"></script>
-<script src="assets/tracker/tracker.js?v=share-1"></script>
+<script src="assets/tracker/supabase-config.js?v=live-1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/tracker/live.js?v=live-1"></script>
+<script src="assets/tracker/tracker.js?v=live-1"></script>
 </body>
 </html>
