@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b151e">
 <meta name="description" content="Poké-Agenda : suivez le Pokédex régional et national, les Pokémon possédés et les objectifs de chaque jeu et chaque sauvegarde.">
-<title>Vitrine Pokémon à partager | Poké-Agenda</title>
+<title>Poké Agenda V4 | Collection Pokémon et profil Discord</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/tracker/tracker.css?v=live-1">
+<link rel="stylesheet" href="assets/tracker/tracker.css?v=discord-1">
 </head>
 <body>
 <main class="shell">
@@ -15,25 +15,29 @@
   <a class="brand" href="./">Poké<b>Agenda</b><small>Le suivi de votre aventure</small></a>
   <div class="topnav">
     <a href="./" class="button">← Retour au Poké-Agenda</a>
+    <span id="discordWho" class="discord-who" aria-live="polite"></span>
+    <button type="button" id="discordLoginButton" class="discord-button" data-action="cloud-login">Connexion Discord</button>
+    <button type="button" id="discordLogoutButton" class="button" data-action="cloud-logout" hidden>Déconnexion</button>
     <button class="button" type="button" id="importTrigger">Importer des sauvegardes</button>
     <input id="fileImport" class="hidden" type="file" accept=".json,application/json">
   </div>
 </header>
 <section class="intro">
-  <div class="eyebrow">Poké-Agenda • Suivi V3</div>
+  <div class="eyebrow">Poké Agenda • Suivi V4</div>
   <h1>Ta collection Pokémon, en vitrine.</h1>
-  <p>Explore les jeux Pokémon, retrouve tes parties et expose ta progression. Deux jauges indépendantes suivent les Pokémon possédés et les objectifs accomplis. Copie un lien vers une vitrine en lecture seule pour la partager facilement avec tes amis, sans compte.</p>
+  <p>Suis tes Pokédex et tes objectifs par sauvegarde. Connecte-toi avec Discord pour retrouver toute ta collection sur tes appareils, avec une vitrine publique à ton image.</p>
 </section>
 <div id="app"><div class="section" role="status">Chargement des Pokédex…</div></div>
 <footer class="foot">
   <p>Poké-Agenda est un projet de fans non officiel. Les noms, personnages et illustrations Pokémon appartiennent à leurs ayants droit.</p>
   <p>Les informations Pokédex proviennent de <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a>, leurs illustrations de <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokéAPI Sprites</a>. <a href="https://github.com/NeiloF16/poke-agenda/issues" target="_blank" rel="noopener noreferrer">Signaler une erreur</a>.</p>
-  <p>La progression reste dans ce navigateur. Exporte régulièrement tes données au format JSON pour les conserver. La vitrine permanente conservera le même lien et synchronisera automatiquement ses statistiques après activation. Les sauvegardes complètes, notes et cases individuelles restent privées dans ton navigateur.</p>
+  <p>Sans connexion, les données restent locales. Avec Discord, la collection complète est sauvegardée dans un espace Supabase privé et les statistiques de la vitrine publique sont synchronisées. Conserve toujours un export JSON de secours. <a href="https://discord.gg/4FX9PDmYzG" target="_blank" rel="noopener noreferrer">Discord communautaire</a>.</p>
 </footer>
 </main>
 <script src="assets/tracker/dex-data.js"></script>
 <script src="assets/tracker/supabase-config.js?v=live-1"></script>
 <script src="assets/tracker/live.js?v=live-2"></script>
-<script src="assets/tracker/tracker.js?v=live-1"></script>
+<script src="assets/tracker/cloud.js?v=discord-1"></script>
+<script src="assets/tracker/tracker.js?v=discord-1"></script>
 </body>
 </html>
