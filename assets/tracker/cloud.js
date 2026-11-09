@@ -240,7 +240,7 @@
   }
   function cleanDiscordUsername(value) {
     // Les anciens tags Discord (ex. flyneilo#0) n'ont plus leur place ici.
-    return String(value ?? "").trim().replace(/#\\d{1,4}$/, "").slice(0,80);
+    return String(value ?? "").trim().replace(/#\d{1,4}$/, "").slice(0,80);
   }
   async function syncDiscordProfile(session) {
     if (!user) return;
