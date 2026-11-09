@@ -597,6 +597,568 @@ window.POKE_DIST_ARCHIVES={
       "source": "zapere",
       "ot": "",
       "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Pikachu",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Pikachu fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Goupix",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Goupix fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Ponyta",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Ponyta fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Excelangue",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Excelangue fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Saquedeneu",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Saquedeneu fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Évoli",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Évoli fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Ptéra",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Ptéra fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Yanma",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Yanma fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Écrémeuh",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Écrémeuh fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Balignon",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Balignon fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Wailmer",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Wailmer fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Okéoké",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Okéoké fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Étourvol",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Étourvol fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Apitrini",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Apitrini fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Pachirisu",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Pachirisu fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Sancoki",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Sancoki fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Laporeille",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Laporeille fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Cradopaud",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Cradopaud fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Écayon",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Écayon fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        8
+      ],
+      "name": "My Pokémon Ranch — Blizzi",
+      "period": "Selon la rotation quotidienne d'Eulalie",
+      "region": "Versions et Ranch compatibles",
+      "method": "Échange interne à Ranch",
+      "detail": "Blizzi fait partie des 20 espèces classiques proposées par Eulalie à travers les échanges de My Pokémon Ranch. Les conditions de l'échange Wanted varient ; consulter la fiche Pokébip.",
+      "source": "ranch",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Artikodin Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Artikodin faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Raikou Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Raikou faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Entei Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Entei faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Suicune Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Suicune faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Lugia Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Lugia faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Ho-Oh Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Ho-Oh faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Latias Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Latias faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        5,
+        6,
+        7
+      ],
+      "name": "Latios Top 10 / 10ANNIV",
+      "period": "26 septembre et 2–3 décembre 2006",
+      "region": "France",
+      "method": "Distribution locale",
+      "detail": "Latios faisait partie des distributions Top 10 du dixième anniversaire Pokémon, disponibles sur Rubis, Saphir, Émeraude, Rouge Feu et Vert Feuille. Les lieux de distribution incluaient Paris.",
+      "source": "fr3",
+      "ot": "10ANNIV",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Xerneas — Année des légendaires 2018",
+      "period": "4–26 mai 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Xerneas fut proposé durant l'année des légendaires sur Lune et Ultra-Lune. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Yveltal — Année des légendaires 2018",
+      "period": "4–26 mai 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Yveltal fut proposé durant l'année des légendaires sur Soleil et Ultra-Soleil. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Kyogre — Année des légendaires 2018",
+      "period": "3–25 août 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Kyogre fut proposé durant l'année des légendaires sur Soleil et Ultra-Soleil. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Groudon — Année des légendaires 2018",
+      "period": "3–25 août 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Groudon fut proposé durant l'année des légendaires sur Lune et Ultra-Lune. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Lugia — Année des légendaires 2018",
+      "period": "2–25 novembre 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Lugia fut proposé durant l'année des légendaires sur Soleil et Ultra-Soleil. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        15,
+        16
+      ],
+      "name": "Ho-Oh — Année des légendaires 2018",
+      "period": "2–25 novembre 2018",
+      "region": "France / Europe",
+      "method": "Code magasin",
+      "detail": "Ho-Oh fut proposé durant l'année des légendaires sur Lune et Ultra-Lune. Les propriétés et le niveau dépendent de la génération du jeu et la date de validité du code peut dépasser la période en magasin.",
+      "source": "eu7code",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Celebi — 20e anniversaire 2016",
+      "period": "mars 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Celebi faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Jirachi — 20e anniversaire 2016",
+      "period": "avril 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Jirachi faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Manaphy — 20e anniversaire 2016",
+      "period": "juin 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Manaphy faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Shaymin — 20e anniversaire 2016",
+      "period": "juillet 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Shaymin faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Victini — 20e anniversaire 2016",
+      "period": "septembre 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Victini faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Keldeo — 20e anniversaire 2016",
+      "period": "octobre 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Keldeo faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
+    },
+    {
+      "games": [
+        13,
+        14
+      ],
+      "name": "Meloetta — 20e anniversaire 2016",
+      "period": "décembre 2016",
+      "region": "France / Europe",
+      "method": "Nintendo Network",
+      "detail": "Meloetta faisait partie des distributions mensuelles du vingtième anniversaire sur X/Y et Rubis Oméga/Saphir Alpha. Chaque Pokémon était associé à sa propre période de réception ; consulter les conditions Pokébip.",
+      "source": "fr6",
+      "ot": "",
+      "tid": ""
     }
   ],
   "generations": [
