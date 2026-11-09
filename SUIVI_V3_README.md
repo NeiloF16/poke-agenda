@@ -42,3 +42,11 @@ La V3 reste une application statique : les données de progression sont conserv�
 - Licence PokéAPI : `assets/tracker/POKEAPI-LICENSE.md`
 
 Pokémon et les marques associées appartiennent à leurs ayants droit. Poké-Agenda est un projet de fans non officiel.
+
+## Vitrines permanentes (option avec Supabase)
+
+Une nouvelle fonctionnalité permet une adresse de partage stable, du type `suivi.html?live=<uuid>`, dont les statistiques évoluent automatiquement à chaque progression. Le site GitHub Pages reste identique et les sauvegardes détaillées restent locales. Les données publiques ne contiennent que les noms des parties, les nombres d'espèces cochées dans le Pokédex régional et les pourcentages d'objectifs. Les visiteurs ne peuvent pas éditer cette vitrine.
+
+La mise en service nécessite **un projet Supabase** avec authentification anonyme activée, migration SQL et clés publiques configurées. Elle reste **désactivée tant que ces étapes ne sont pas réalisées**. Le partage par lien instantané demeure utilisable sans Supabase.
+
+Configuration, contrôles RLS, révocation et limites : voir `supabase/SETUP.md`.
