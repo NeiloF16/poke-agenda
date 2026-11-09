@@ -76,3 +76,12 @@ dialog{padding:0;border:1px solid #47606a;border-radius:21px;background:#0e1b24;
 .calendar-game-picker select{background:#18323c;border:1px solid #3a6266;color:#eef9ed;padding:10px 13px;border-radius:10px;min-width:210px;max-width:100%}
 .archive-item{background:linear-gradient(155deg,#23343b,#263037)}
 @media(max-width:600px){.live-event-grid{grid-template-columns:1fr}.live-event-card{padding:15px}.calendar-game-picker select{width:100%}}
+
+/* Veille RSS en complément des distributions dont les dates sont vérifiées. */
+.news-list{display:grid;gap:7px;margin:12px 0}
+.news-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;background:#1b3540;border:1px solid #375864;border-radius:11px;text-decoration:none;color:#e9f7f3;padding:12px 14px;font-size:13px}
+.news-row:hover{border-color:#9dea9f;background:#244342}
+.news-row-date{font-size:11px;color:#a1bfc5;white-space:nowrap}
+.news-row strong{font-weight:750;overflow-wrap:anywhere}
+.news-row>span:last-child{color:#b8f792;font-size:17px}
+@media(max-width:580px){.news-row{grid-template-columns:1fr auto}.news-row-date{grid-column:1/-1}.news-row>strong{grid-column:1}}
