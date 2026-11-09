@@ -16,7 +16,7 @@ const DATE_KEY=()=>{const n=new Date();return `${n.getFullYear()}-${String(n.get
 function getLocal(k,def){try{const x=localStorage.getItem('poke-v2-'+k);return x===null?def:JSON.parse(x);}catch{return def;}}
 function setLocal(k,v){try{localStorage.setItem('poke-v2-'+k,JSON.stringify(v))}catch{}}
 let favorites=getLocal('favorites',[]), checked=getLocal('checks',{}), notes=getLocal('notes',{}), last=getLocal('last',null);
-let view='dashboard',genFilter=0,searchQuery='',weekDay=new Date().getDay();
+let view=new URLSearchParams(location.search).get('view')==='library'?'library':'dashboard',genFilter=0,searchQuery='',weekDay=new Date().getDay();
 function todayChecked(){return checked[DATE_KEY()]||[];}
 function isDone(id){return todayChecked().includes(id);}
 function mark(id){let all=todayChecked().slice();all=all.includes(id)?all.filter(x=>x!==id):[...all,id];checked[DATE_KEY()]=all;setLocal('checks',checked);render();refreshReader();}
