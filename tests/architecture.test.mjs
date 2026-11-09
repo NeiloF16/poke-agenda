@@ -17,7 +17,7 @@ const src = {
   cloud:read("assets/tracker/cloud.js")
 };
 
-test("le catalogue conserve les 23 jeux et 90 anciennes illustrations en archive",()=>{
+test("le catalogue conserve la liste des 23 jeux et 90 anciennes illustrations dans la branche archive",()=>{
   const json=JSON.parse(src.catalogue);
   const context={window:{}};
   runInNewContext(src.games,context);

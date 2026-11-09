@@ -7,7 +7,7 @@ Le calendrier utilise désormais **23 glossaires écrits**, un par jeu ou duo de
 - Depuis `index.html` : une carte ouvre `jeu.html?game=14` (par exemple Rubis Oméga / Saphir Alpha).
 - Chaque page contient des chapitres indépendants : **Activités régulières**, **Échanges & Pokémon spéciaux**, **Distributions & événements datés**, **Secrets, connexions & Post Game**.
 - Recherche textuelle au sein du jeu, sources consultables et mentions de disponibilité/région.
-- Les anciennes PNG sont conservées sous `assets/pages/` comme archives, mais **elles ne sont plus présentées comme le guide principal**.
+- Les anciennes fiches PNG (90 images) ont été **conservées intégralement dans Git**, sur la branche [archive/fiches-png-avant-allegement-20261109](https://github.com/NeiloF16/poke-agenda/tree/archive/fiches-png-avant-allegement-20261109/assets/pages). Elles ne sont plus expédiées à GitHub Pages pour éviter une archive de déploiement disproportionnée. Les glossaires écrits restent le guide principal. Le catalogue conserve leur liste comme historique éditorial.
 - Les boutons du suivi continuent de distinguer les versions, par exemple `suivi.html?game=14&version=Rubis%20Om%C3%A9ga`.
 - Favoris, marquage « consulté aujourd'hui » et notes conservent les mêmes clés de `localStorage` qu'avant.
 
