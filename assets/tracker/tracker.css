@@ -4,3 +4,5 @@
 @media(max-width:1200px){.game-grid{grid-template-columns:repeat(3,1fr)}.dex-list{grid-template-columns:repeat(4,1fr)}}@media(max-width:900px){.shell{padding:20px 18px 65px}.game-grid{grid-template-columns:repeat(2,1fr)}.progress-grid{grid-template-columns:repeat(2,1fr)}.dex-list{grid-template-columns:repeat(3,1fr)}.tasks{grid-template-columns:1fr}}@media(max-width:600px){.shell{padding:14px 12px 45px}.section{padding:14px}.intro{padding:19px}.game-grid{gap:8px}.game-tile img{height:90px}.progress-grid{grid-template-columns:1fr}.dex-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.mon{padding:7px 5px;gap:4px;min-height:69px}.mon img{width:34px;height:34px}.mon .name{font-size:11px}.savebar select{max-width:100%}.taskform{flex-direction:column}.play-head h1{font-size:29px}.topnav .button{padding:9px}}
 
 @media(max-width:900px){.showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.showcase-grid{grid-template-columns:1fr}.showcase-tile img{height:135px}}
+
+[hidden]{display:none!important}
