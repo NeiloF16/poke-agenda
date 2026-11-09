@@ -121,3 +121,68 @@ test("les boutons de bibliothèque dirigent vers chaque version distincte",()=>{
   assert.ok(index.indexOf("game-rules.js")>0);
   assert.match(cloud,/String\(r\.version \|\| ""\)/);
 });
+
+
+test("compléter le Dex actif coche seulement la version et la partie affichées",()=>{
+  const {evalCode,memory}=session();
+  const before=JSON.parse(memory.get("poke-agenda-tracker-v3"));
+  assert.equal(evalCode("selectedVersion"),"Saphir Alpha");
+  assert.match(evalCode("dexBody(getSlot())"),/data-action="complete-dex"/);
+  assert.match(evalCode("dexBody(getSlot())"),/Compléter ce Pokédex/);
+  evalCode('action("complete-dex")');
+  const after=JSON.parse(memory.get("poke-agenda-tracker-v3"));
+  const ruby=after.games["14"].find(s=>s.id==="ro-ancien");
+  const sapphire=after.games["14"].find(s=>s.id==="sa-ancien");
+  assert.deepEqual(ruby,before.games["14"].find(s=>s.id==="ro-ancien"));
+  assert.deepEqual(sapphire.owned,[1,2,3,4,5]);
+  assert.deepEqual(sapphire.done,{});
+  assert.match(evalCode("dexBody(getSlot())"),/Pokédex complété/);
+  assert.match(evalCode("dexBody(getSlot())"),/disabled aria-disabled="true"/);
+  assert.equal(evalCode('completeSelectedDex()'),false);
+  assert.equal(evalCode("getSlot().version"),"Saphir Alpha");
+});
+
+test("la confirmation annulée n'altère aucun Pokémon ni la sauvegarde locale",()=>{
+  const {evalCode,memory}=session();
+  const before=memory.get("poke-agenda-tracker-v3");
+  evalCode("confirm=()=>false");
+  assert.equal(evalCode("completeSelectedDex()"),false);
+  assert.equal(memory.get("poke-agenda-tracker-v3"),before);
+  assert.equal(evalCode("getSlot().owned.length"),1);
+});
+
+test("régional et national peuvent être complétés séparément sans valider les objectifs",()=>{
+  const fixture={version:3,games:{"9":[{
+    id:"platine-1",version:"Platine",name:"Partie Platine",
+    owned:[600],done:{"story-0":true},custom:[]
+  }]},active:{"9":"platine-1"}};
+  const {evalCode,memory}=session("https://example.com/suivi.html?game=9&version=Platine",fixture);
+  assert.equal(evalCode("dexIndex"),0);
+  assert.equal(evalCode("activeDex().label"),"Sinnoh étendu");
+  assert.equal(evalCode("completeSelectedDex()"),true);
+  assert.equal(evalCode("getSlot().owned.length"),6);
+  assert.equal(evalCode("getSlot().owned.includes(600)"),true);
+  assert.equal(evalCode("getSlot().done['story-0']"),true);
+  assert.equal(evalCode("dexes()[1].label"),"National");
+  evalCode("dexIndex=1");
+  assert.match(evalCode("dexBody(getSlot())"),/Compléter ce Pokédex/);
+  assert.equal(evalCode("completeSelectedDex()"),true);
+  const persisted=JSON.parse(memory.get("poke-agenda-tracker-v3"));
+  assert.equal(persisted.games["9"][0].owned.length,494);
+  assert.equal(persisted.games["9"][0].owned.includes(600),true);
+  assert.deepEqual(persisted.games["9"][0].done,{"story-0":true});
+  assert.match(evalCode("dexBody(getSlot())"),/Pokédex complété/);
+});
+
+test("la vitrine publique n'affiche aucun contrôle de modification du Pokédex",()=>{
+  const profile={
+    display_name:"Public",username:"public",updated_at:"2026-11-09T18:00:00Z",
+    public_progress:{v:1,rows:[[14,"Alpha",2,50,"Saphir Alpha"]]}
+  };
+  const {evalCode}=session(
+    "https://example.com/suivi.html?profil=123e4567-e89b-42d3-a456-426614174000",
+    ownerData,profile
+  );
+  assert.doesNotMatch(evalCode("profileShowcasePage()"),/data-action="complete-dex"/);
+  assert.equal(evalCode("completeSelectedDex()"),false);
+});
