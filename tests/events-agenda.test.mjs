@@ -85,3 +85,49 @@ test("scripts chargés en ordre, affichages du catalogue et des tâches opérati
   const cloud=read("assets/tracker/cloud.js");
   assert.match(cloud,/poke_cloud_collections/);
 });
+
+
+test("simulation DOM : accueil, agenda et archives s'affichent avec les sources",()=>{
+  const scripts=[
+    "assets/calendar/games.js",
+    "assets/glossary/data.js",
+    "assets/glossary/distribution-archives.js",
+    "assets/glossary/daily-weekly.js",
+    "assets/calendar/timed-events.js",
+    "assets/calendar/event-engine.js",
+    "assets/calendar/news-watch.js"
+  ];
+  function page(view){
+    const window={addEventListener(){},scrollTo(){}};
+    const DOM=new Map();
+    const get=id=>{
+      if(!DOM.has(id))DOM.set(id,{id,innerHTML:"",textContent:"",value:"",
+        classList:{toggle(){},add(){},remove(){}},
+        addEventListener(){},insertBefore(){},click(){},querySelector(){return null}});
+      return DOM.get(id);
+    };
+    const document={getElementById:get,querySelector(){return null},querySelectorAll(){return []},
+      createElement(){return{innerHTML:"",style:{},click(){}}},addEventListener(){},visibilityState:"hidden"};
+    const localStorage={getItem(){return null},setItem(){}};
+    const location={search:"?view="+view,href:"https://example.com/"};
+    const context={window,document,localStorage,location,Date,Intl,URL,URLSearchParams,Promise,
+      setTimeout(){},setInterval(){},clearTimeout(){},console,
+      fetch:async()=>{throw new Error("offline")}};
+    for(const path of scripts)runInNewContext(read(path),context);
+    runInNewContext(home,context);
+    return {html:get("pageContent").innerHTML,render:expr=>runInNewContext(expr,context),
+      get,ctx:context};
+  }
+  const dashboard=page("dashboard");
+  assert.match(dashboard.html,/En cours maintenant/);
+  assert.match(dashboard.html,/Annonces à vérifier/);
+  assert.match(dashboard.html,/Source vérifiée/);
+  const events=page("events");
+  assert.match(events.html,/Événements Pokémon et distributions/);
+  assert.match(events.html,/Pérégrain spécial/);
+  events.render("eventTab='past';render()");
+  assert.match(events.get("pageContent").innerHTML,/Diancie chromatique/);
+  const calendar=page("calendar");
+  assert.match(calendar.html,/routineGameFilter/);
+  assert.match(calendar.html,/Pokébip/);
+});
