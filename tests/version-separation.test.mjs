@@ -51,7 +51,7 @@ test("38 cartes individuelles : chacune des 22 familles contient ses propres ver
   const pairs=evalCode("GAME_VERSIONS.map(v=>[v.id,v.version])");
   assert.equal(pairs.length,38);
   assert.equal(pairs.filter(x=>x[0]===14).length,2);
-  assert.deepEqual(pairs.filter(x=>x[0]===14).map(x=>x[1]),["Rubis Oméga","Saphir Alpha"]);
+  assert.deepEqual(JSON.parse(JSON.stringify(pairs.filter(x=>x[0]===14).map(x=>x[1]))),["Rubis Oméga","Saphir Alpha"]);
   const gallery=evalCode("gameGallery()");
   assert.match(gallery,/38 versions individuelles/);
   assert.match(gallery,/data-version="Rubis Oméga"/);
@@ -87,7 +87,7 @@ test("la vitrine et les liens instantanés distinguent les versions",()=>{
   const {evalCode,location}=session();
   const rows=evalCode("showcaseRows()");
   assert.equal(rows.length,2);
-  assert.deepEqual(rows.map(x=>x.game),["Rubis Oméga","Saphir Alpha"]);
+  assert.deepEqual(JSON.parse(JSON.stringify(rows.map(x=>x.game))),["Rubis Oméga","Saphir Alpha"]);
   assert.equal(rows[0].caught,2);
   assert.equal(rows[1].caught,1);
   const share=evalCode("shareSnapshotURL(showcaseRows())");
