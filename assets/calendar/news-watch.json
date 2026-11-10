@@ -1,8 +1,14 @@
 {
-  "updatedAt": "2026-11-09",
+  "updatedAt": "2026-11-10",
   "source": "https://www.pokebip.com/news.rss",
-  "note": "Ces titres sont des annonces à vérifier, pas des distributions réputées actives.",
+  "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
+    {
+      "title": "Distribution d'un Nymphali, de boosters numériques et d'une étude ponctuelle !",
+      "url": "https://www.pokebip.com/news/7593/distribution-dun-nymphali-de-boosters-numeriques-et-dune-etude-ponctuelle",
+      "date": "2026-10-16",
+      "games": []
+    },
     {
       "title": "Écarlate et Violet : Retour de Muplodocus surpuissant",
       "url": "https://www.pokebip.com/news/7630/ecarlate-et-violet-retour-de-muplodocus-surpuissant",
