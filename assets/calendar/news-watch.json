@@ -1,8 +1,32 @@
 {
-  "updatedAt": "2026-11-10",
+  "updatedAt": "2026-11-11",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
+    {
+      "title": "Pokémon GO : Journée de Super Méga-Raids Mélodelfe !",
+      "url": "https://www.pokebip.com/news/7633/pokemon-go-journee-de-super-mega-raids-melodelfe",
+      "date": "2026-11-11",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Souhaits crépusculaires !",
+      "url": "https://www.pokebip.com/news/7632/pokemon-go-souhaits-crepusculaires",
+      "date": "2026-11-11",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Sentiers Dynamax !",
+      "url": "https://www.pokebip.com/news/7631/pokemon-go-sentiers-dynamax",
+      "date": "2026-11-11",
+      "games": [
+        23
+      ]
+    },
     {
       "title": "Distribution d'un Nymphali, de boosters numériques et d'une étude ponctuelle !",
       "url": "https://www.pokebip.com/news/7593/distribution-dun-nymphali-de-boosters-numeriques-et-dune-etude-ponctuelle",
@@ -31,14 +55,6 @@
       "date": "2026-10-30",
       "games": [
         21
-      ]
-    },
-    {
-      "title": "Légendes Pokémon Z-A : Distribution d'un Pérégrain évoluable en Prismillon aléatoire !",
-      "url": "https://www.pokebip.com/news/7616/legendes-pokemon-z-a-distribution-dun-peregrain-evoluable-en-prismillon-aleatoire",
-      "date": "2026-10-29",
-      "games": [
-        22
       ]
     }
   ]
