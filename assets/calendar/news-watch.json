@@ -1,14 +1,22 @@
 {
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-13",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
     {
-      "title": "Pokémon GO : Journée de Super Méga-Raids Mélodelfe !",
-      "url": "https://www.pokebip.com/news/7633/pokemon-go-journee-de-super-mega-raids-melodelfe",
-      "date": "2026-11-11",
+      "title": "Distributions d'Yveltal shiny sur Légendes Pokémon : Z-A et de meubles sur Pokémon Pokopia !",
+      "url": "https://www.pokebip.com/news/7637/distributions-dyveltal-shiny-sur-legendes-pokemon-z-a-et-de-meubles-sur-pokemon-pokopia",
+      "date": "2026-11-12",
       "games": [
-        23
+        22
+      ]
+    },
+    {
+      "title": "Distributions de Xerneas shiny sur Légendes Pokémon : Z-A et de meubles sur Pokémon Pokopia !",
+      "url": "https://www.pokebip.com/news/7635/distributions-de-xerneas-shiny-sur-legendes-pokemon-z-a-et-de-meubles-sur-pokemon-pokopia",
+      "date": "2026-11-12",
+      "games": [
+        22
       ]
     },
     {
@@ -20,18 +28,50 @@
       ]
     },
     {
-      "title": "Pokémon GO : Sentiers Dynamax !",
-      "url": "https://www.pokebip.com/news/7631/pokemon-go-sentiers-dynamax",
-      "date": "2026-11-11",
+      "title": "Distribution d'un Nymphali, de boosters numériques et d'une étude ponctuelle !",
+      "url": "https://www.pokebip.com/news/7593/distribution-dun-nymphali-de-boosters-numeriques-et-dune-etude-ponctuelle",
+      "date": "2026-10-16",
+      "games": []
+    },
+    {
+      "title": "Écarlate et Violet : Retour d'Ékaïser surpuissant",
+      "url": "https://www.pokebip.com/news/7640/ecarlate-et-violet-retour-dekaiser-surpuissant",
+      "date": "2026-11-13",
+      "games": [
+        21
+      ]
+    },
+    {
+      "title": "Légendes Pokémon Z-A : Saison X des combats classés !",
+      "url": "https://www.pokebip.com/news/7636/legendes-pokemon-z-a-saison-x-des-combats-classes",
+      "date": "2026-11-13",
+      "games": [
+        22
+      ]
+    },
+    {
+      "title": "Pokémon GO : Journée de Raids : Méga-Mélodelfe !",
+      "url": "https://www.pokebip.com/news/7633/pokemon-go-journee-de-raids-mega-melodelfe",
+      "date": "2026-11-12",
       "games": [
         23
       ]
     },
     {
-      "title": "Distribution d'un Nymphali, de boosters numériques et d'une étude ponctuelle !",
-      "url": "https://www.pokebip.com/news/7593/distribution-dun-nymphali-de-boosters-numeriques-et-dune-etude-ponctuelle",
-      "date": "2026-10-16",
-      "games": []
+      "title": "Pokémon GO : Sentiers Dynamax !",
+      "url": "https://www.pokebip.com/news/7631/pokemon-go-sentiers-dynamax",
+      "date": "2026-11-12",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Passe GO : Sentiers Dynamax !",
+      "url": "https://www.pokebip.com/news/7638/pokemon-go-passe-go-sentiers-dynamax",
+      "date": "2026-11-12",
+      "games": [
+        23
+      ]
     },
     {
       "title": "Écarlate et Violet : Retour de Muplodocus surpuissant",
@@ -47,14 +87,6 @@
       "date": "2026-11-06",
       "games": [
         22
-      ]
-    },
-    {
-      "title": "Écarlate et Violet : Retour de Trioxhydre surpuissant",
-      "url": "https://www.pokebip.com/news/7619/ecarlate-et-violet-retour-de-trioxhydre-surpuissant",
-      "date": "2026-10-30",
-      "games": [
-        21
       ]
     }
   ]
