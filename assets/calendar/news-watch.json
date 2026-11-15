@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14",
+  "updatedAt": "2026-11-15",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
@@ -17,14 +17,6 @@
       "date": "2026-11-12",
       "games": [
         22
-      ]
-    },
-    {
-      "title": "Pokémon GO : Terres Sauvages GO 2026 !",
-      "url": "https://www.pokebip.com/news/7545/pokemon-go-terres-sauvages-go-2026",
-      "date": "2026-10-17",
-      "games": [
-        23
       ]
     },
     {
