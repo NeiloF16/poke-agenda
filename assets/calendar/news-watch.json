@@ -1,8 +1,16 @@
 {
-  "updatedAt": "2026-11-22",
+  "updatedAt": "2026-11-23",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
+    {
+      "title": "Pokémon GO : Saison 29 de la Ligue Combat GO !",
+      "url": "https://www.pokebip.com/news/7655/pokemon-go-saison-29-de-la-ligue-combat-go",
+      "date": "2026-11-22",
+      "games": [
+        23
+      ]
+    },
     {
       "title": "Pokémon GO : Programme du mois de décembre !",
       "url": "https://www.pokebip.com/news/7652/pokemon-go-programme-du-mois-de-decembre",
@@ -49,14 +57,6 @@
       "date": "2026-11-12",
       "games": [
         22
-      ]
-    },
-    {
-      "title": "Pokémon GO : Saison 29 de la Ligue Combat GO !",
-      "url": "https://www.pokebip.com/news/7655/pokemon-go-saison-29-de-la-ligue-combat-go",
-      "date": "2026-11-22",
-      "games": [
-        23
       ]
     },
     {
