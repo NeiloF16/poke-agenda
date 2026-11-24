@@ -1,16 +1,8 @@
 {
-  "updatedAt": "2026-11-23",
+  "updatedAt": "2026-11-24",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
-    {
-      "title": "Pokémon GO : Saison 29 de la Ligue Combat GO !",
-      "url": "https://www.pokebip.com/news/7655/pokemon-go-saison-29-de-la-ligue-combat-go",
-      "date": "2026-11-22",
-      "games": [
-        23
-      ]
-    },
     {
       "title": "Pokémon GO : Programme du mois de décembre !",
       "url": "https://www.pokebip.com/news/7652/pokemon-go-programme-du-mois-de-decembre",
@@ -60,6 +52,22 @@
       ]
     },
     {
+      "title": "Pokémon GO : Saison Destinations de rêve",
+      "url": "https://www.pokebip.com/news/7656/pokemon-go-saison-destinations-de-reve",
+      "date": "2026-11-24",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Saison 29 de la Ligue Combat GO !",
+      "url": "https://www.pokebip.com/news/7655/pokemon-go-saison-29-de-la-ligue-combat-go",
+      "date": "2026-11-22",
+      "games": [
+        23
+      ]
+    },
+    {
       "title": "Pokémon GO : Community Day All-Stars édition 2026 !",
       "url": "https://www.pokebip.com/news/7651/pokemon-go-community-day-all-stars-edition-2026",
       "date": "2026-11-20",
@@ -94,14 +102,6 @@
       "url": "https://www.pokebip.com/news/7642/pokemon-champions-distribution-de-coupons-de-vitesse",
       "date": "2026-11-17",
       "games": []
-    },
-    {
-      "title": "Pokémon GO : Souhaits crépusculaires !",
-      "url": "https://www.pokebip.com/news/7632/pokemon-go-souhaits-crepusculaires",
-      "date": "2026-11-13",
-      "games": [
-        23
-      ]
     }
   ]
 }
