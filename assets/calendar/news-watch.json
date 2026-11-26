@@ -1,8 +1,24 @@
 {
-  "updatedAt": "2026-11-25",
+  "updatedAt": "2026-11-26",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
+    {
+      "title": "Pokémon GO : Paradis tropical !",
+      "url": "https://www.pokebip.com/news/7661/pokemon-go-paradis-tropical",
+      "date": "2026-11-26",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Célébration pour Pokémon Champions !",
+      "url": "https://www.pokebip.com/news/7660/pokemon-go-celebration-pour-pokemon-champions",
+      "date": "2026-11-26",
+      "games": [
+        23
+      ]
+    },
     {
       "title": "Pokémon GO : Passe GO de décembre 2026 !",
       "url": "https://www.pokebip.com/news/7659/pokemon-go-passe-go-de-decembre-2026",
@@ -60,6 +76,14 @@
       ]
     },
     {
+      "title": "Pokémon Champions x Pokémon GO : Obtenez la tenue du Professeur Willow !",
+      "url": "https://www.pokebip.com/news/7663/pokemon-champions-x-pokemon-go-obtenez-la-tenue-du-professeur-willow",
+      "date": "2026-11-26",
+      "games": [
+        23
+      ]
+    },
+    {
       "title": "Pokémon GO : Saison Destinations de rêve",
       "url": "https://www.pokebip.com/news/7656/pokemon-go-saison-destinations-de-reve",
       "date": "2026-11-24",
@@ -82,20 +106,6 @@
       "games": [
         23
       ]
-    },
-    {
-      "title": "Écarlate et Violet : Retour de Lanssorien surpuissant",
-      "url": "https://www.pokebip.com/news/7646/ecarlate-et-violet-retour-de-lanssorien-surpuissant",
-      "date": "2026-11-20",
-      "games": [
-        21
-      ]
-    },
-    {
-      "title": "Distribution d'un Nymphali, de boosters numériques et d'une étude ponctuelle !",
-      "url": "https://www.pokebip.com/news/7593/distribution-dun-nymphali-de-boosters-numeriques-et-dune-etude-ponctuelle",
-      "date": "2026-11-20",
-      "games": []
     }
   ]
 }
