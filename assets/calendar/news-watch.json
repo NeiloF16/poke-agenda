@@ -1,8 +1,16 @@
 {
-  "updatedAt": "2026-11-26",
+  "updatedAt": "2026-11-27",
   "source": "https://www.pokebip.com/news.rss",
   "note": "Ces titres de Pokébip sont des annonces, pas des distributions réputées actives. Les dates de réception sont validées séparément.",
   "items": [
+    {
+      "title": "Écarlate et Violet : Retour de Serpente-Eau et Vert-de-Fer !",
+      "url": "https://www.pokebip.com/news/7667/ecarlate-et-violet-retour-de-serpente-eau-et-vert-de-fer",
+      "date": "2026-11-27",
+      "games": [
+        21
+      ]
+    },
     {
       "title": "Pokémon GO : Paradis tropical !",
       "url": "https://www.pokebip.com/news/7661/pokemon-go-paradis-tropical",
@@ -20,22 +28,6 @@
       ]
     },
     {
-      "title": "Pokémon GO : Passe GO de décembre 2026 !",
-      "url": "https://www.pokebip.com/news/7659/pokemon-go-passe-go-de-decembre-2026",
-      "date": "2026-11-25",
-      "games": [
-        23
-      ]
-    },
-    {
-      "title": "Pokémon GO : Programme du mois de décembre !",
-      "url": "https://www.pokebip.com/news/7652/pokemon-go-programme-du-mois-de-decembre",
-      "date": "2026-11-20",
-      "games": [
-        23
-      ]
-    },
-    {
       "title": "Pokémon GO : Journée de Raids clones",
       "url": "https://www.pokebip.com/news/7649/pokemon-go-journee-de-raids-clones",
       "date": "2026-11-20",
@@ -46,14 +38,6 @@
     {
       "title": "Pokémon GO : Journée Éclosion de Korillon !",
       "url": "https://www.pokebip.com/news/7648/pokemon-go-journee-eclosion-de-korillon",
-      "date": "2026-11-20",
-      "games": [
-        23
-      ]
-    },
-    {
-      "title": "Pokémon GO : Journée Combat Max : Lézargus Gigamax !",
-      "url": "https://www.pokebip.com/news/7647/pokemon-go-journee-combat-max-lezargus-gigamax",
       "date": "2026-11-20",
       "games": [
         23
@@ -76,6 +60,38 @@
       ]
     },
     {
+      "title": "Pokémon GO : Journée Combat Max : Lézargus Gigamax !",
+      "url": "https://www.pokebip.com/news/7647/pokemon-go-journee-combat-max-lezargus-gigamax",
+      "date": "2026-11-27",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Programme du mois de décembre !",
+      "url": "https://www.pokebip.com/news/7652/pokemon-go-programme-du-mois-de-decembre",
+      "date": "2026-11-27",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Pokémon GO : Passe GO de décembre 2026 !",
+      "url": "https://www.pokebip.com/news/7659/pokemon-go-passe-go-de-decembre-2026",
+      "date": "2026-11-27",
+      "games": [
+        23
+      ]
+    },
+    {
+      "title": "Écarlate et Violet : Retour de Glaivodo surpuissant",
+      "url": "https://www.pokebip.com/news/7666/ecarlate-et-violet-retour-de-glaivodo-surpuissant",
+      "date": "2026-11-27",
+      "games": [
+        21
+      ]
+    },
+    {
       "title": "Pokémon Champions x Pokémon GO : Obtenez la tenue du Professeur Willow !",
       "url": "https://www.pokebip.com/news/7663/pokemon-champions-x-pokemon-go-obtenez-la-tenue-du-professeur-willow",
       "date": "2026-11-26",
@@ -87,22 +103,6 @@
       "title": "Pokémon GO : Saison Destinations de rêve",
       "url": "https://www.pokebip.com/news/7656/pokemon-go-saison-destinations-de-reve",
       "date": "2026-11-24",
-      "games": [
-        23
-      ]
-    },
-    {
-      "title": "Pokémon GO : Saison 29 de la Ligue Combat GO !",
-      "url": "https://www.pokebip.com/news/7655/pokemon-go-saison-29-de-la-ligue-combat-go",
-      "date": "2026-11-24",
-      "games": [
-        23
-      ]
-    },
-    {
-      "title": "Pokémon GO : Community Day All-Stars édition 2026 !",
-      "url": "https://www.pokebip.com/news/7651/pokemon-go-community-day-all-stars-edition-2026",
-      "date": "2026-11-20",
       "games": [
         23
       ]
